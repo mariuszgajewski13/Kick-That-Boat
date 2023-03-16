@@ -55,4 +55,3 @@ log-*
 /.vs
 CryptographicExceptions/
 [Uu]serSettings/
-/Assets/Scripts/PlayerMovement.cs
