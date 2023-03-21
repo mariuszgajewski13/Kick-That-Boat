@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float time = 0;
+    public float time = 0f;
     private bool leftKeyPressed = false;
     private bool rightKeyPressed = false;
-    public int playerDistance = 10;
-    public int playerSpeed = 10;
+    
+    private float playerSpeed = 0f;
+    private float acceleration;
+    [SerializeField]
+    public float mass = 10f;
+    [SerializeField]
+    public float force = 0.1f;
+
     public SerialController serialController;
 
     void Start()
@@ -19,29 +26,31 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow)) 
         {
             leftKeyPressed = true;
-            time = 0;
             if(rightKeyPressed)
-                gameObject.transform.Translate(new Vector3(0f, 0f, playerDistance) * playerSpeed * Time.deltaTime);
+                Move();
 
             rightKeyPressed = false;
+            time = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && leftKeyPressed)
         {
-            gameObject.transform.Translate(new Vector3(0f, 0f, playerDistance) * playerSpeed * Time.deltaTime);
-            time = 0;
+            Move();
             rightKeyPressed = true;
             leftKeyPressed= false;
+            time = 0;
         }
 
         if (time > 1)
         {
             leftKeyPressed= false;
             rightKeyPressed = false;
+            time = 0;
+            playerSpeed = 0f;
         }
         
     }
@@ -49,9 +58,18 @@ public class PlayerMovement : MonoBehaviour
     void OnMessageArrived(string msg)
     {
         string message = serialController.ReadSerialMessage();
-        Debug.Log(message);
-        Debug.Log(msg);
-        gameObject.transform.Translate(new Vector3(0f, 0f, playerDistance) * playerSpeed * Time.deltaTime);
+        //Debug.Log(message);
+        //Debug.Log(msg);
+        //gameObject.transform.Translate(new Vector3(0f, 0f, playerDistance) * playerSpeed * Time.deltaTime);
+        Move();
+    }
+
+    private void Move()
+    {
+        acceleration = force / mass;
+        playerSpeed += acceleration * (1-time);
+        Debug.Log(playerSpeed);
+        gameObject.transform.Translate(0, 0, playerSpeed * Time.deltaTime);
     }
 }
  
