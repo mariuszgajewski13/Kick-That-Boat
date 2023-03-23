@@ -8,14 +8,20 @@ public class RaceTime : MonoBehaviour
     private float time = 0f;
     private TMPro.TextMeshProUGUI timer;
 
-    private void Start()
+    public TMPro.TextMeshProUGUI countdown;
+
+    private void Awake()
     {
         timer = GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void FixedUpdate()
     {
-        time += Time.deltaTime;
-        timer.text = time.ToString();
+        if (!countdown.IsActive())
+        {
+            time += Time.deltaTime;
+            timer.text = time.ToString();
+
+        }
     }
 }

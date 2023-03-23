@@ -10,13 +10,18 @@ public class DisplayTime : MonoBehaviour
     private TMPro.TextMeshProUGUI time;
     public PlayerMovement playerMovement;
 
-    private void Start()
+    public TMPro.TextMeshProUGUI countdown;
+
+    private void Awake()
     {
         time = GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     private void Update()
     {
-        time.text = playerMovement.time.ToString("N3");
+        if (!countdown.IsActive())
+        {
+            time.text = playerMovement.time.ToString("N3");
+        }
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Countdown : MonoBehaviour
 {
-    private TMPro.TextMeshProUGUI counterText;
+    public TMPro.TextMeshProUGUI counterText;
     [SerializeField] public int counterLenth = 3;
 
-    void Start()
+    void Awake()
     {
         counterText = GetComponent<TMPro.TextMeshProUGUI>();
         StartCoroutine(CounterCountdown(counterLenth));

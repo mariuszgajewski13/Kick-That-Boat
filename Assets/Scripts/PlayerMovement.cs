@@ -18,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public float force = 0.1f;
 
     public SerialController serialController;
+    public TMPro.TextMeshProUGUI countdown;
 
-    void Start()
+    void Awake()
     {
         serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
     }
@@ -27,30 +28,34 @@ public class PlayerMovement : MonoBehaviour
     {
         time += Time.deltaTime;
         
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) 
+        if(!countdown.IsActive())
         {
-            leftKeyPressed = true;
-            if(rightKeyPressed)
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) 
+            {
+                leftKeyPressed = true;
+                if(rightKeyPressed)
+                    Move();
+
+                rightKeyPressed = false;
+                time = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) && leftKeyPressed)
+            {
                 Move();
+                rightKeyPressed = true;
+                leftKeyPressed= false;
+                time = 0;
+            }
 
-            rightKeyPressed = false;
-            time = 0;
-        }
+            if (time > 1)
+            {
+                leftKeyPressed= false;
+                rightKeyPressed = false;
+                time = 0;
+                playerSpeed = 0f;
+            }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && leftKeyPressed)
-        {
-            Move();
-            rightKeyPressed = true;
-            leftKeyPressed= false;
-            time = 0;
-        }
-
-        if (time > 1)
-        {
-            leftKeyPressed= false;
-            rightKeyPressed = false;
-            time = 0;
-            playerSpeed = 0f;
         }
         
     }
