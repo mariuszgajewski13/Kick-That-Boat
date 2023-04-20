@@ -7,6 +7,7 @@ public class RaceTime : MonoBehaviour
 {
     private float time = 0f;
     private TMPro.TextMeshProUGUI timer;
+    public bool levelFinished = false;
 
     public TMPro.TextMeshProUGUI countdown;
 
@@ -21,7 +22,10 @@ public class RaceTime : MonoBehaviour
         {
             time += Time.deltaTime;
             timer.text = time.ToString();
-
+            if(levelFinished)
+            {
+                return;
+            }
         }
     }
 }
