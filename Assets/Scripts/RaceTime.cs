@@ -7,9 +7,12 @@ public class RaceTime : MonoBehaviour
 {
     private float time = 0f;
     private TMPro.TextMeshProUGUI timer;
+    public TMPro.TextMeshProUGUI finalTimeText;
+    public float finalTime;
+    public TMPro.TextMeshProUGUI countdown;
+
     public bool levelFinished = false;
 
-    public TMPro.TextMeshProUGUI countdown;
 
     private void Awake()
     {
@@ -24,8 +27,17 @@ public class RaceTime : MonoBehaviour
             timer.text = time.ToString();
             if(levelFinished)
             {
-                return;
+                finalTime = time;
+                timer.gameObject.SetActive(false);
+                ShowTime();
             }
         }
+    }
+
+    private void ShowTime()
+    {
+        finalTimeText.gameObject.SetActive(true);
+        finalTimeText.text = finalTime.ToString();
+        return;
     }
 }
