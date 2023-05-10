@@ -24,7 +24,7 @@ public class RaceTime : MonoBehaviour
         if (!countdown.IsActive())
         {
             time += Time.deltaTime;
-            timer.text = time.ToString();
+            timer.text = time.ToString("N3");
             if(levelFinished)
             {
                 finalTime = time;
@@ -37,7 +37,7 @@ public class RaceTime : MonoBehaviour
     private void ShowTime()
     {
         finalTimeText.gameObject.SetActive(true);
-        finalTimeText.text = finalTime.ToString();
-        return;
+        finalTimeText.text = finalTime.ToString("N3");
+        //return;
     }
 }

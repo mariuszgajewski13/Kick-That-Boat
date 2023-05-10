@@ -19,6 +19,7 @@ public class LevelFinish : MonoBehaviour
             //disable input
             time.levelFinished = true;
             restartButton.gameObject.SetActive(true);
+            
         }
     }
 }

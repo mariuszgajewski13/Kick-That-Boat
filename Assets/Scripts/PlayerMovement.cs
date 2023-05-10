@@ -1,30 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float time = 0f;
-    private bool leftKeyPressed = false;
-    private bool rightKeyPressed = false;
-    
-    private float playerSpeed = 0f;
-    private float acceleration;
-    [SerializeField]
-    public float mass = 10f;
-    [SerializeField]
-    public float force = 0.1f;
-
+    public float time;
     public SerialController serialController;
     public TMPro.TextMeshProUGUI countdown;
+    [SerializeField] private float mass;
+    [SerializeField] private float force;
 
-    void Awake()
+    private float playerSpeed;
+    private float acceleration;
+    private bool leftKeyPressed;
+    private bool rightKeyPressed;
+    private Rigidbody rb;
+    private RaceTime isFinished;
+
+    private void Awake()
     {
         serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        rb = this.GetComponent<Rigidbody>();
+        leftKeyPressed = false;
+        rightKeyPressed = false;
     }
-    void Update()
+    private void Update()
     {
         time += Time.deltaTime;
         
@@ -55,26 +53,22 @@ public class PlayerMovement : MonoBehaviour
                 time = 0;
                 playerSpeed = 0f;
             }
-
         }
-        
     }
 
-    void OnMessageArrived(string msg)
+    /*void OnMessageArrived(string msg)
     {
-        string message = serialController.ReadSerialMessage();
-        //Debug.Log(message);
-        //Debug.Log(msg);
-        //gameObject.transform.Translate(new Vector3(0f, 0f, playerDistance) * playerSpeed * Time.deltaTime);
+        msg = serialController.ReadSerialMessage();
+        Debug.Log(msg);
         Move();
-    }
+    }*/
 
     private void Move()
     {
         acceleration = force / mass;
         playerSpeed += acceleration * (1-time);
         Debug.Log(playerSpeed);
-        gameObject.transform.Translate(0, 0, playerSpeed * Time.deltaTime);
+        rb.AddForce(new Vector3(0, 0, 1) * playerSpeed, ForceMode.Acceleration);
     }
 }
  
