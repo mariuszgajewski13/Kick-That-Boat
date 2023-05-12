@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         acceleration = force / mass;
         playerSpeed += acceleration * (1-time);
         Debug.Log(playerSpeed);
-        rb.AddForce(new Vector3(0, 0, 1) * playerSpeed, ForceMode.Acceleration);
+        rb.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed, ForceMode.Acceleration);
     }
 }
  
