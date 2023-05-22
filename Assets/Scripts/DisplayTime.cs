@@ -23,8 +23,8 @@ public class DisplayTime : MonoBehaviour
     {
         if (!countdown.IsActive())
         {
-            time.text = playerMovement.time.ToString("N3");
-            slider.value = playerMovement.time;
+           // time.text = playerMovement.time.ToString("N3");
+            //slider.value = playerMovement.time;
         }
     }
 }
