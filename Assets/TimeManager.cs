@@ -18,22 +18,18 @@ public class TimeManager : MonoBehaviour
 
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
-        GameState currentState = GameManager.instance.state;
+        state = GameManager.instance.state;
         
-        switch (currentState)
+        switch (state)
         {
             case GameState.Countdown:
                 time = 0;
                 break;
             case GameState.Race:
-                //while (currentState == GameState.Race)
-                //{
-                    time += Time.deltaTime;
-                    timer.text = time.ToString("N3");
-                    
-                //}
+                
                 break;
             case GameState.Victory:
+                //race = false;
                 victoryTime = time;
                 finalTimeText.text = victoryTime.ToString("N3");
                 break;
@@ -41,6 +37,16 @@ public class TimeManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
         
+    }
+
+    private void Update()
+    {
+        if (GameManager.instance.race)
+        {
+            time += Time.deltaTime;
+            timer.text = time.ToString("N3");
+            
+        }
     }
 }    
     

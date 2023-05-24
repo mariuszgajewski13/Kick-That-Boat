@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Player 1 Movement",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "4e575d07-fd31-471c-82ad-e1ba27de1750",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Player 2 Movement",
@@ -29,7 +29,7 @@
                     "name": "",
                     "id": "f872095f-136f-4db7-8679-d1c31c5ffa21",
                     "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Player 1 Movement",
@@ -40,7 +40,7 @@
                     "name": "",
                     "id": "692fc705-feec-4296-aea2-d123636722ed",
                     "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Player 1 Movement",

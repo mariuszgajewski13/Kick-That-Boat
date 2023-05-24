@@ -5,7 +5,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameState state;
-    public static event Action<GameState> OnGameStateChanged; 
+    public static event Action<GameState> OnGameStateChanged;
+
+    public bool race;
+    
     private void Awake()
     {
         instance = this;
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
                 HandleCountdown();
                 break;
             case GameState.Race:
+                HandleRace();
                 break;
             case GameState.Victory:
                 HandleVictory();
@@ -44,7 +48,12 @@ public class GameManager : MonoBehaviour
 
     void HandleVictory()
     {
-        
+        race = false;
+    }
+
+    void HandleRace()
+    {
+        race = true;
     }
 }
 
