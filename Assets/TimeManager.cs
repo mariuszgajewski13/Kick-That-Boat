@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public TimeManager instance;
-    private float time = 0f;
+    public static TimeManager instance;
+    public float time;
     private float victoryTime;
     public TMPro.TextMeshProUGUI timer;
     public TMPro.TextMeshProUGUI finalTimeText;
@@ -17,17 +18,29 @@ public class TimeManager : MonoBehaviour
 
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
-        if (state == GameState.Race)
+        GameState currentState = GameManager.instance.state;
+        
+        switch (currentState)
         {
-            time += Time.deltaTime;
-            timer.text = time.ToString("N3");
+            case GameState.Countdown:
+                time = 0;
+                break;
+            case GameState.Race:
+                //while (currentState == GameState.Race)
+                //{
+                    time += Time.deltaTime;
+                    timer.text = time.ToString("N3");
+                    
+                //}
+                break;
+            case GameState.Victory:
+                victoryTime = time;
+                finalTimeText.text = victoryTime.ToString("N3");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
-
-        if (state == GameState.Victory)
-        {
-            victoryTime = time;
-            finalTimeText.text = victoryTime.ToString("N3");
-        }
+        
     }
 }    
     

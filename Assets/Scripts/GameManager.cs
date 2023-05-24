@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    public GameState State;
+    public static GameManager instance;
+    public GameState state;
     public static event Action<GameState> OnGameStateChanged; 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     private void Start()
@@ -20,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameState(GameState newState)
     {
-        State = newState;
+        state = newState;
 
         switch (newState)
         {

@@ -37,6 +37,6 @@ public class Countdown : MonoBehaviour
             counter -= 1;
         }
 
-        GameManager.Instance.UpdateGameState(GameState.Race);
+        GameManager.instance.UpdateGameState(GameState.Race);
     }
 }

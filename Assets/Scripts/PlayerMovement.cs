@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
+        state = GameManager.instance.state;
+        
         if (state == GameState.Race)
         {
             timeBetweenKeys += Time.deltaTime;
