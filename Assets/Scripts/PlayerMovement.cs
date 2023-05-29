@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,21 +14,20 @@ public class PlayerMovement : MonoBehaviour
     public InputAction player1Input;
     public InputAction player2Input;
     
-    private Rigidbody player1Rigidbody;
-    private Rigidbody player2Rigidbody;
+    [SerializeField] private Rigidbody player1Rigidbody;
+    [SerializeField] private Rigidbody player2Rigidbody;
     
     private float playerSpeed;
     private float acceleration;
     
     private bool leftKeyPressed;
     private bool rightKeyPressed;
-
-    public bool race;
+    
+    public Slider slider;
     
     private void Awake()
     {
         serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
-        player1Rigidbody = GetComponent<Rigidbody>();
         leftKeyPressed = false;
         rightKeyPressed = false;
         
@@ -40,45 +40,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.instance.race)
         {
-            timeBetweenKeys += Time.deltaTime;
-                
-           // if (player1Input.triggered) 
-           // {
-           if (Input.GetKeyDown(KeyCode.LeftArrow)) 
-           {
-               leftKeyPressed = true;
-               if(rightKeyPressed)
-                   Move(player1Rigidbody);
-               rightKeyPressed = false;
-               timeBetweenKeys = 0;
-           }
+            //if (player1Input.WasPerformedThisFrame())
+            //{
+                CheckInput(Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.RightArrow), player1Rigidbody);
+            //}
+            
+            if (player2Input.WasPerformedThisFrame())
+            {
+                CheckInput(Input.GetKeyDown(KeyCode.A), Input.GetKeyDown(KeyCode.D), player2Rigidbody);
+            }
 
-           if (Input.GetKeyDown(KeyCode.RightArrow) && leftKeyPressed)
-           {
-               Move(player1Rigidbody);
-               rightKeyPressed = true;
-               leftKeyPressed= false;
-               timeBetweenKeys = 0;
-           }
-
-           if (timeBetweenKeys > 1)
-           {
-               leftKeyPressed = false;
-               rightKeyPressed = false;
-               timeBetweenKeys = 0;
-               playerSpeed = 0f;
-           }
         }
     }
 
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
-        if (state == GameState.Race)
-        {
-            
-        }
-    }
 
+    }
 
     /*void OnMessageArrived(string msg)
     {
@@ -97,6 +75,37 @@ public class PlayerMovement : MonoBehaviour
         if (player == player2Rigidbody)
             player2Rigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed, ForceMode.Acceleration);
 
+    }
+
+    private void CheckInput(bool left, bool right, Rigidbody player)
+    {
+        timeBetweenKeys += Time.deltaTime;
+        slider.value = 1-timeBetweenKeys;
+
+        if (left) 
+        {
+            leftKeyPressed = true;
+            if(rightKeyPressed)
+                Move(player);
+            rightKeyPressed = false;
+            timeBetweenKeys = 0;
+        }
+
+        if (right && leftKeyPressed)
+        {
+            Move(player);
+            rightKeyPressed = true;
+            leftKeyPressed= false;
+            timeBetweenKeys = 0;
+        }
+
+        if (timeBetweenKeys > 1)
+        {
+            leftKeyPressed = false;
+            rightKeyPressed = false;
+            timeBetweenKeys = 0;
+            playerSpeed = 0f;
+        }
     }
 }
  
