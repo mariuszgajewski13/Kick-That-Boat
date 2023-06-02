@@ -3,23 +3,25 @@ using UnityEngine.UI;
 
 public class LevelFinish : MonoBehaviour
 {
-    public Button restartButton;
     public TMPro.TextMeshProUGUI whoWon;
-    public TMPro.TextMeshProUGUI victoryTime;
+    public GameObject timeBox;
+    public GameObject winninScreen;
 
     void OnTriggerEnter(Collider other)
     {
         GameManager.instance.UpdateGameState(GameState.Victory);
-        restartButton.gameObject.SetActive(true);
-        victoryTime.gameObject.SetActive(true);
+        winninScreen.gameObject.SetActive(true);
         whoWon.gameObject.SetActive(true);
+        timeBox.SetActive(false);
         if (other.CompareTag("Player"))
         {
             whoWon.text = "Player 1 WON";
+            whoWon.color = new Color(186, 255, 178);
         }
         else if (other.CompareTag("Player2"))
         {
             whoWon.text = "Player 2 WON";
+            whoWon.color = new Color(76, 109, 152);
         }
     }
 }

@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
                 CheckInput(Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.RightArrow), player1Rigidbody);
             //}
             
-            if (player2Input.WasPerformedThisFrame())
+            if (player2Input.triggered)
             {
                 CheckInput(Input.GetKeyDown(KeyCode.A), Input.GetKeyDown(KeyCode.D), player2Rigidbody);
             }
