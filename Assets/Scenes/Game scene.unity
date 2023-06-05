@@ -5566,6 +5566,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8552043091324844292, guid: c24c178580dac3d4696bef569716bf54,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: -4622253606074510005, guid: e4cb97f3a31918d4a89902cae3bcba52,
+        type: 3}
+    - target: {fileID: 8552043091324844292, guid: c24c178580dac3d4696bef569716bf54,
+        type: 3}
       propertyPath: slider
       value: 
       objectReference: {fileID: 1877579058}

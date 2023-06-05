@@ -11,11 +11,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float mass;
     [SerializeField] private float force;
     
-    public InputAction player1Input;
-    public InputAction player2Input;
+    //public InputAction player1Input;
+    //public InputAction player2Input;
+    public InputActionReference player;
     
-    [SerializeField] private Rigidbody player1Rigidbody;
-    [SerializeField] private Rigidbody player2Rigidbody;
+     private Rigidbody playerRigidbody;
+   // [SerializeField] private Rigidbody player2Rigidbody;
     
     private float playerSpeed;
     private float acceleration;
@@ -30,9 +31,11 @@ public class PlayerMovement : MonoBehaviour
         serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         leftKeyPressed = false;
         rightKeyPressed = false;
+
+        playerRigidbody = GetComponent<Rigidbody>();
         
-        player1Input.Enable();
-        player2Input.Enable();
+        //player1Input.Enable();
+        //player2Input.Enable();
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
 
@@ -42,17 +45,16 @@ public class PlayerMovement : MonoBehaviour
         {
             //if (player1Input.WasPerformedThisFrame())
             //{
-                CheckInput(Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.RightArrow), player1Rigidbody);
+           //     CheckInput(Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.RightArrow), player1Rigidbody);
             //}
-            
-            if (player2Input.triggered)
-            {
-                CheckInput(Input.GetKeyDown(KeyCode.A), Input.GetKeyDown(KeyCode.D), player2Rigidbody);
-            }
+            player.action[0];
+           // if (player2Input.triggered)
+           // {
+                CheckInput(player, Input.GetKeyDown(KeyCode.D), playerRigidbody);
+           // }
 
         }
     }
-
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
 
