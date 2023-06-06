@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,20 +12,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float mass;
     [SerializeField] private float force;
     
-    //public InputAction player1Input;
-    //public InputAction player2Input;
-    public InputActionReference player;
+    public InputActionReference left;
+    public InputActionReference right;
     
      private Rigidbody playerRigidbody;
-   // [SerializeField] private Rigidbody player2Rigidbody;
     
     private float playerSpeed;
     private float acceleration;
     
     private bool leftKeyPressed;
     private bool rightKeyPressed;
-    
-    public Slider slider;
+
+    public TextMeshProUGUI speed;
+
+    public MovementTime time;
     
     private void Awake()
     {
@@ -34,8 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody = GetComponent<Rigidbody>();
         
-        //player1Input.Enable();
-        //player2Input.Enable();
+        left.action.Enable();
+        right.action.Enable();
+        
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
 
@@ -43,16 +45,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.instance.race)
         {
-            //if (player1Input.WasPerformedThisFrame())
-            //{
-           //     CheckInput(Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.RightArrow), player1Rigidbody);
-            //}
-            player.action[0];
-           // if (player2Input.triggered)
-           // {
-                CheckInput(player, Input.GetKeyDown(KeyCode.D), playerRigidbody);
-           // }
-
+            speed.text = playerSpeed.ToString();
+            CheckInput(left.action.triggered, right.action.triggered);
         }
     }
     private void GameManagerOnOnGameStateChanged(GameState state)
@@ -67,45 +61,40 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }*/
 
-    private void Move(Rigidbody player)
+    private void Move()
     {
         acceleration = force / mass;
-        playerSpeed += acceleration * (1-timeBetweenKeys);
-        //Debug.Log(playerSpeed);
-        if(player == player1Rigidbody)
-            player1Rigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed , ForceMode.Acceleration);
-        if (player == player2Rigidbody)
-            player2Rigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed, ForceMode.Acceleration);
-
+        playerSpeed += acceleration * (1-time.timeBetweenKeys);
+        playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed , ForceMode.Acceleration);
     }
 
-    private void CheckInput(bool left, bool right, Rigidbody player)
+    private void CheckInput(bool left, bool right)
     {
-        timeBetweenKeys += Time.deltaTime;
-        slider.value = 1-timeBetweenKeys;
+        //timeBetweenKeys += Time.deltaTime;
+        
 
         if (left) 
         {
             leftKeyPressed = true;
             if(rightKeyPressed)
-                Move(player);
+                Move();
             rightKeyPressed = false;
-            timeBetweenKeys = 0;
+            time.timeBetweenKeys = 0;
         }
 
         if (right && leftKeyPressed)
         {
-            Move(player);
+            Move();
             rightKeyPressed = true;
             leftKeyPressed= false;
-            timeBetweenKeys = 0;
+            time.timeBetweenKeys = 0;
         }
 
-        if (timeBetweenKeys > 1)
+        if (time.timeBetweenKeys > 1)
         {
             leftKeyPressed = false;
             rightKeyPressed = false;
-            timeBetweenKeys = 0;
+            time.timeBetweenKeys = 0;
             playerSpeed = 0f;
         }
     }
