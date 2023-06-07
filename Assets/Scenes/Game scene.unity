@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.652763, g: 0.77130866, b: 0.8736301, a: 1}
+  m_IndirectSpecularColor: {r: 1.0943633, g: 1.2469759, b: 1.4153749, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 1af381bfe254b41498ea6ffb85a21545,
     type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: eb9db8691e2d65c45bf2e12ff66c73cf,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 1f40d32d3bf1b9f47a77b0dbc280493f,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -1608,7 +1608,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1618,7 +1618,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
-  m_ShadowAngle: 0
+  m_ShadowAngle: 10
 --- !u!4 &410087041
 Transform:
   m_ObjectHideFlags: 0
@@ -5849,7 +5849,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
