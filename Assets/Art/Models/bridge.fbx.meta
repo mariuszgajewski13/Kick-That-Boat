@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: f781c5b1b94de1d44b90e3860ba8c543
+guid: 43a8a7102a96f4046a261a1f9cd4bbcd
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 23a5b277b70afea45998696cf5e2f0e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rubber
+    second: {fileID: 2100000, guid: 34a273f3656c75a4c90d6a1f7328bf5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodPlanksWorn33_1K
+    second: {fileID: 2100000, guid: eeb395d8d938e9a4da5e1e059f4d0fa6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
