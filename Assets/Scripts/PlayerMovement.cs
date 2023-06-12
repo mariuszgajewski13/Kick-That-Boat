@@ -23,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private bool leftKeyPressed;
     private bool rightKeyPressed;
 
-    public TextMeshProUGUI speed;
-
     public MovementTime time;
     
     private void Awake()
@@ -45,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.instance.race)
         {
-            speed.text = playerSpeed.ToString();
             CheckInput(left.action.triggered, right.action.triggered);
         }
     }
@@ -54,12 +51,17 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    /*void OnMessageArrived(string msg)
+    void OnMessageArrived(string msg)
     {
         msg = serialController.ReadSerialMessage();
         Debug.Log(msg);
         Move();
-    }*/
+    }
+    
+    void OnConnectionEvent(bool success)
+    {
+
+    }
 
     private void Move()
     {

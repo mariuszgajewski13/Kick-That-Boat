@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameState state;
+    public GameObject startScreen;
+    public GameObject countdown;
     public static event Action<GameState> OnGameStateChanged;
 
     public bool race;
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.Countdown);
+        UpdateGameState(GameState.Tutorial);
     }
 
     public void UpdateGameState(GameState newState)
@@ -25,6 +27,9 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
+            case GameState.Tutorial:
+                HandleTutorial();
+                break;
             case GameState.Countdown:
                 HandleCountdown();
                 break;
@@ -41,11 +46,17 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(newState);
     }
 
-    void HandleCountdown()
+    void HandleTutorial()
     {
         
     }
 
+    void HandleCountdown()
+    {
+        startScreen.SetActive(false);
+        countdown.SetActive(true);
+    }
+    
     void HandleVictory()
     {
         race = false;
@@ -59,6 +70,7 @@ public class GameManager : MonoBehaviour
 
 public enum GameState
 {
+    Tutorial,
     Countdown,
     Race,
     Victory

@@ -22,11 +22,12 @@ public class TimeManager : MonoBehaviour
         
         switch (state)
         {
+            case GameState.Tutorial:
+                break;
             case GameState.Countdown:
                 time = 0;
                 break;
             case GameState.Race:
-                
                 break;
             case GameState.Victory:
                 //race = false;
