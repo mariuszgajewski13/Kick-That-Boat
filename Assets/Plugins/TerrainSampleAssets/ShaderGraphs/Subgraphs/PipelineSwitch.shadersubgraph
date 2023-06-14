@@ -77,20 +77,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "a02f221f177d4677bfce9304ac07e1ab"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "9c52532f55544fa2b9f8364998640ba8"
-                },
-                "m_SlotId": 4
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "a155e628ba4347e9a76a5a9adbcc1b5b"
                 },
                 "m_SlotId": 0
@@ -468,9 +454,6 @@
             "m_Id": "19ff58d2a50d4610a793ce28c01e845c"
         },
         {
-            "m_Id": "eab7ea5e0be142b6959d0ad2b38c1670"
-        },
-        {
             "m_Id": "1775123ee9074892afc3752ae7742fa5"
         },
         {
@@ -482,7 +465,7 @@
         "HLSL"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
@@ -490,7 +473,7 @@
     "m_SourceType": 1,
     "m_FunctionName": "PipelineSwitch",
     "m_FunctionSource": "",
-    "m_FunctionBody": "#if defined(UNIVERSAL_PIPELINE_CORE_INCLUDED)\nOUT= URP;\n#elif defined(BUILTIN_PIPELINE_CORE_INCLUDED)\nOUT= BUILTIN;\n#elif defined(UNITY_HEADER_HD_INCLUDED)\nOUT= HDRP;\n#else\nOUT = OTHER;\n#endif\n"
+    "m_FunctionBody": "#if defined(UNIVERSAL_PIPELINE_CORE_INCLUDED)\nOUT= URP;\n#elif defined(BUILTIN_PIPELINE_CORE_INCLUDED)\nOUT= BUILTIN;\n#else\nOUT = OTHER;\n#endif\n"
 }
 
 {
@@ -698,31 +681,6 @@
     "m_Property": {
         "m_Id": "4e387d9da6c44155a682fb1158bbfc91"
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "eab7ea5e0be142b6959d0ad2b38c1670",
-    "m_Id": 4,
-    "m_DisplayName": "HDRP",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "HDRP",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 0.0,
-        "w": 1.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
 }
 
 {

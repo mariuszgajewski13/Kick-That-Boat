@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -35,8 +36,18 @@ public class PlayerMovement : MonoBehaviour
         
         left.action.Enable();
         right.action.Enable();
+
+        left.action.started += OnInputActionStarted;
         
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+    }
+
+    private void OnInputActionStarted(InputAction.CallbackContext obj)
+    {
+        if (GameManager.instance.race)
+        {
+            CheckInput(true, true);
+        }
     }
 
     private void Update()
@@ -53,9 +64,17 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMessageArrived(string msg)
     {
-        msg = serialController.ReadSerialMessage();
-        Debug.Log(msg);
-        Move();
+        //Debug.Log(msg);
+        if (msg == "1")
+        {
+            OnInputActionStarted(new InputAction.CallbackContext());
+        }
+        
+        if (msg == "2")
+        {
+            left.action.Disable();
+            right.action.Enable();
+        }
     }
     
     void OnConnectionEvent(bool success)
@@ -72,9 +91,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckInput(bool left, bool right)
     {
-        //timeBetweenKeys += Time.deltaTime;
-        
-
         if (left) 
         {
             leftKeyPressed = true;
