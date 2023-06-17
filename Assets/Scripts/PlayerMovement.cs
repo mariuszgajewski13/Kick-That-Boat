@@ -25,6 +25,13 @@ public class PlayerMovement : MonoBehaviour
     private bool rightKeyPressed;
 
     public MovementTime time;
+
+    public ParticleSystem ripples;
+
+    private float velocityXZ;
+    private Vector3 playerPos;
+
+    public Camera rippleCam;
     
     private void Awake()
     {
@@ -37,25 +44,47 @@ public class PlayerMovement : MonoBehaviour
         left.action.Enable();
         right.action.Enable();
 
-        left.action.started += OnInputActionStarted;
+       // left.action.started += OnInputActionStarted;
         
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
 
-    private void OnInputActionStarted(InputAction.CallbackContext obj)
+    private void Start()
+    {
+        CreateRipple(-180, 180, 3, 2, 2, 2);
+    }
+
+    /*private void OnInputActionStarted(InputAction.CallbackContext obj)
     {
         if (GameManager.instance.race)
         {
             CheckInput(true, true);
         }
-    }
+    }*/
 
     private void Update()
     {
+        rippleCam.transform.position = transform.position + Vector3.up * 10;
+        Shader.SetGlobalVector("_Player", transform.position);
+        
         if (GameManager.instance.race)
         {
             CheckInput(left.action.triggered, right.action.triggered);
         }
+
+        velocityXZ = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
+            new Vector3(playerPos.x, 0, playerPos.z));
+        playerPos = transform.position;
+        
+        
+
+        if (velocityXZ > 0.02f && Time.renderedFrameCount % 5 == 0)
+        {
+            int y = (int)transform.eulerAngles.y;
+            CreateRipple(y-90, y+90, 3, 5, 2, 1);
+            
+        }
+
     }
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
@@ -67,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(msg);
         if (msg == "1")
         {
-            OnInputActionStarted(new InputAction.CallbackContext());
+            //OnInputActionStarted(new InputAction.CallbackContext());
         }
         
         if (msg == "2")
@@ -114,6 +143,19 @@ public class PlayerMovement : MonoBehaviour
             rightKeyPressed = false;
             time.timeBetweenKeys = 0;
             playerSpeed = 0f;
+        }
+    }
+
+    private void CreateRipple(int start, int end, int delta, float speed, float size, float lifetime)
+    {
+        Vector3 forward = ripples.transform.eulerAngles;
+        forward.y = start;
+        ripples.transform.eulerAngles = forward;
+        
+        for (int i = start; i < end; i+=delta)
+        {
+            ripples.Emit(transform.position+ripples.transform.forward * 0.5f, ripples.transform.forward * speed, size, lifetime, Color.white);
+            ripples.transform.eulerAngles += Vector3.up * delta;
         }
     }
 }

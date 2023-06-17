@@ -5,14 +5,16 @@ public class LevelFinish : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI whoWon;
     public GameObject timeBox;
-    public GameObject winninScreen;
+    public GameObject winningScreen;
+    public Button restartButton;
 
     void OnTriggerEnter(Collider other)
     {
         GameManager.instance.UpdateGameState(GameState.Victory);
-        winninScreen.gameObject.SetActive(true);
+        winningScreen.gameObject.SetActive(true);
         whoWon.gameObject.SetActive(true);
         timeBox.SetActive(false);
+        restartButton.Select();
         if (other.CompareTag("Player"))
         {
             whoWon.text = "Player 1 WON";
