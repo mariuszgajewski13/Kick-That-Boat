@@ -1,0 +1,113 @@
+{
+    "name": "Player Controls",
+    "maps": [
+        {
+            "name": "Player_1",
+            "id": "e88784ef-48ff-4d87-bebe-3827230c172a",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "4e575d07-fd31-471c-82ad-e1ba27de1750",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "85509a73-295b-425b-b3a8-4f0004bf33de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f872095f-136f-4db7-8679-d1c31c5ffa21",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e147c8c-f0f5-4c43-b036-50f0d9b5420b",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88121a87-3e78-493c-b1dc-afc14e899095",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player_2",
+            "id": "8e59a64b-c846-4d56-9e6b-64623c4fcef2",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "ee36985e-a150-4cb1-94db-04e27406ae28",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "baa42d6e-46cb-4696-b72b-cb0288d7cec3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4404fc52-608b-4212-958e-f2f0337a71dc",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "366eda2c-46b1-459a-a02f-15243f2efdb2",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,74 +1,154 @@
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float time;
+    private float timeBetweenKeys;
     public SerialController serialController;
-    public TMPro.TextMeshProUGUI countdown;
+    
     [SerializeField] private float mass;
     [SerializeField] private float force;
-
+    
+    public InputActionReference left;
+    public InputActionReference right;
+    
+     private Rigidbody playerRigidbody;
+    
     private float playerSpeed;
     private float acceleration;
+    
     private bool leftKeyPressed;
     private bool rightKeyPressed;
-    private Rigidbody rb;
-    private RaceTime isFinished;
 
+    public MovementTime time;
+
+    public ParticleSystem ripples;
+
+    private float velocityXZ;
+    private Vector3 playerPos;
+
+    public Camera rippleCam;
+    
     private void Awake()
     {
         serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
-        rb = this.GetComponent<Rigidbody>();
         leftKeyPressed = false;
         rightKeyPressed = false;
+
+        playerRigidbody = GetComponent<Rigidbody>();
+        
+        left.action.Enable();
+        right.action.Enable();
+
+        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
+
+    private void Start()
+    {
+        CreateRipple(-180, 180, 3, 2, 2, 2);
+    }
+    
     private void Update()
     {
-        time += Time.deltaTime;
-        
-        if(!countdown.IsActive())
+        if (GameManager.instance.race)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) 
-            {
-                leftKeyPressed = true;
-                if(rightKeyPressed)
-                    Move();
+            CheckInput(left.action.triggered, right.action.triggered);
+        }
+        
+        rippleCam.transform.position = transform.position + Vector3.up * 10;
+        Shader.SetGlobalVector("_Player", transform.position);
 
-                rightKeyPressed = false;
-                time = 0;
-            }
+        velocityXZ = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
+            new Vector3(playerPos.x, 0, playerPos.z));
+        playerPos = transform.position;
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) && leftKeyPressed)
-            {
-                Move();
-                rightKeyPressed = true;
-                leftKeyPressed= false;
-                time = 0;
-            }
-
-            if (time > 1)
-            {
-                leftKeyPressed= false;
-                rightKeyPressed = false;
-                time = 0;
-                playerSpeed = 0f;
-            }
+        if (velocityXZ > 0.02f && Time.renderedFrameCount % 5 == 0)
+        {
+            int y = (int)transform.eulerAngles.y;
+            CreateRipple(y-90, y+90, 3, 5, 2, 1);
         }
     }
-
-    /*void OnMessageArrived(string msg)
+    private void GameManagerOnOnGameStateChanged(GameState state)
     {
-        msg = serialController.ReadSerialMessage();
-        Debug.Log(msg);
-        Move();
-    }*/
+
+    }
+
+    void OnMessageArrived(string msg)
+    {
+        if (GameManager.instance.race)
+        {
+            bool left = false;
+            bool right = false;
+            Debug.Log(msg);
+            if (msg == "1")
+            {
+               left = true;
+            }
+            
+            if (msg == "2")
+            {
+                right = true;
+            }
+
+            CheckInput(left, right);
+        }
+    }
+    
+    void OnConnectionEvent(bool success)
+    {
+
+    }
 
     private void Move()
     {
         acceleration = force / mass;
-        playerSpeed += acceleration * (1-time);
-        Debug.Log(playerSpeed);
-        rb.AddForce(new Vector3(0, 0, 1) * playerSpeed, ForceMode.Acceleration);
+        playerSpeed += acceleration * (1-time.timeBetweenKeys);
+        playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed , ForceMode.Acceleration);
+    }
+
+    private void CheckInput(bool left, bool right)
+    {
+        if (left) 
+        {
+            leftKeyPressed = true;
+            if(rightKeyPressed)
+                Move();
+            rightKeyPressed = false;
+            time.timeBetweenKeys = 0;
+        }
+
+        if (right && leftKeyPressed)
+        {
+            Move();
+            rightKeyPressed = true;
+            leftKeyPressed= false;
+            time.timeBetweenKeys = 0;
+        }
+
+        if (time.timeBetweenKeys > 1)
+        {
+            leftKeyPressed = false;
+            rightKeyPressed = false;
+            time.timeBetweenKeys = 0;
+            playerSpeed = 0f;
+        }
+    }
+
+    private void CreateRipple(int start, int end, int delta, float speed, float size, float lifetime)
+    {
+        Vector3 forward = ripples.transform.eulerAngles;
+        forward.y = start;
+        ripples.transform.eulerAngles = forward;
+        
+        for (int i = start; i < end; i+=delta)
+        {
+            ripples.Emit(transform.position+ripples.transform.forward * 0.5f, ripples.transform.forward * speed, size, lifetime, Color.white);
+            ripples.transform.eulerAngles += Vector3.up * delta;
+        }
     }
 }
  

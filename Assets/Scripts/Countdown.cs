@@ -1,19 +1,34 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Countdown : MonoBehaviour
 {
-    public TMPro.TextMeshProUGUI counterText;
-    [SerializeField] public int counterLenth = 3;
+    private TMPro.TextMeshProUGUI counterText;
+    [SerializeField] public int counter = 3;
 
     void Awake()
     {
+        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
         counterText = GetComponent<TMPro.TextMeshProUGUI>();
-        StartCoroutine(CounterCountdown(counterLenth));
     }
 
-    IEnumerator CounterCountdown(int counter)
+    private void OnDestroy() => GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+
+    private void GameManagerOnOnGameStateChanged(GameState state)
+    {
+        if (state == GameState.Countdown)
+        {
+            StartCoroutine(Counter());
+        }
+
+        if (state == GameState.Race)
+        {
+            counterText.gameObject.SetActive(false);
+            //Destroy(this);
+        }
+    }
+
+    IEnumerator Counter()
     {
         while(counter >= 1)
         {
@@ -21,6 +36,7 @@ public class Countdown : MonoBehaviour
             yield return new WaitForSeconds(1);
             counter -= 1;
         }
-        counterText.gameObject.SetActive(false);
+
+        GameManager.instance.UpdateGameState(GameState.Race);
     }
 }
