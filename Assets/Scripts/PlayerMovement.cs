@@ -44,8 +44,6 @@ public class PlayerMovement : MonoBehaviour
         left.action.Enable();
         right.action.Enable();
 
-       // left.action.started += OnInputActionStarted;
-        
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
 
@@ -53,38 +51,26 @@ public class PlayerMovement : MonoBehaviour
     {
         CreateRipple(-180, 180, 3, 2, 2, 2);
     }
-
-    /*private void OnInputActionStarted(InputAction.CallbackContext obj)
-    {
-        if (GameManager.instance.race)
-        {
-            CheckInput(true, true);
-        }
-    }*/
-
+    
     private void Update()
     {
-        rippleCam.transform.position = transform.position + Vector3.up * 10;
-        Shader.SetGlobalVector("_Player", transform.position);
-        
         if (GameManager.instance.race)
         {
             CheckInput(left.action.triggered, right.action.triggered);
         }
+        
+        rippleCam.transform.position = transform.position + Vector3.up * 10;
+        Shader.SetGlobalVector("_Player", transform.position);
 
         velocityXZ = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
             new Vector3(playerPos.x, 0, playerPos.z));
         playerPos = transform.position;
-        
-        
 
         if (velocityXZ > 0.02f && Time.renderedFrameCount % 5 == 0)
         {
             int y = (int)transform.eulerAngles.y;
             CreateRipple(y-90, y+90, 3, 5, 2, 1);
-            
         }
-
     }
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
@@ -93,16 +79,22 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMessageArrived(string msg)
     {
-        //Debug.Log(msg);
-        if (msg == "1")
+        if (GameManager.instance.race)
         {
-            //OnInputActionStarted(new InputAction.CallbackContext());
-        }
-        
-        if (msg == "2")
-        {
-            left.action.Disable();
-            right.action.Enable();
+            bool left = false;
+            bool right = false;
+            Debug.Log(msg);
+            if (msg == "1")
+            {
+               left = true;
+            }
+            
+            if (msg == "2")
+            {
+                right = true;
+            }
+
+            CheckInput(left, right);
         }
     }
     

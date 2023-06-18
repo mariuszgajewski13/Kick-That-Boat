@@ -6,7 +6,7 @@ public class LevelFinish : MonoBehaviour
     public TMPro.TextMeshProUGUI whoWon;
     public GameObject timeBox;
     public GameObject winningScreen;
-    public Button restartButton;
+    public GameObject UIManager;
 
     void OnTriggerEnter(Collider other)
     {
@@ -14,7 +14,7 @@ public class LevelFinish : MonoBehaviour
         winningScreen.gameObject.SetActive(true);
         whoWon.gameObject.SetActive(true);
         timeBox.SetActive(false);
-        restartButton.Select();
+        UIManager.SetActive(true);
         if (other.CompareTag("Player"))
         {
             whoWon.text = "Player 1 WON";
