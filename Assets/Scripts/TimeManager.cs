@@ -5,7 +5,7 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
     public float time;
-    private float victoryTime;
+    public float victoryTime;
     public TMPro.TextMeshProUGUI timer;
     public TMPro.TextMeshProUGUI finalTimeText;
     private void Awake()
