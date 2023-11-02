@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     
      private Rigidbody playerRigidbody;
     
-    private float playerSpeed;
+    public float playerSpeed;
     private float acceleration;
     
     private bool leftKeyPressed;
@@ -108,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         acceleration = force / mass;
         playerSpeed += acceleration * (1-time.timeBetweenKeys);
         playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed , ForceMode.Acceleration);
+        Debug.Log(playerSpeed);
     }
 
     private void CheckInput(bool left, bool right)

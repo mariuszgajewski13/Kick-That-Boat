@@ -9,10 +9,23 @@ public class MovementTime : MonoBehaviour
     public Slider slider;
     
     public float timeBetweenKeys = 0;
+    public PlayerMovement player;
 
     private void Update()
     {
+        //slider.value = 0;
         timeBetweenKeys += Time.deltaTime;
-        slider.value = 1-timeBetweenKeys;
+        //if (player.GetComponent<Rigidbody>().velocity.z > 1)
+        if (timeBetweenKeys != 0)
+        {
+            slider.value += (1-timeBetweenKeys);
+            //slider.value++;
+        }
+        else
+        {
+            slider.value--;
+            
+        }
+        
     }
 }
