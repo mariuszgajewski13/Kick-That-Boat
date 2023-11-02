@@ -7,19 +7,17 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float timeBetweenKeys;
     public SerialController serialController;
-    
-    [SerializeField] private float mass;
-    [SerializeField] private float force;
     
     public InputActionReference left;
     public InputActionReference right;
     
      private Rigidbody playerRigidbody;
     
-    public float playerSpeed;
-    private float acceleration;
+    public float acceleration = 10.0f;
+    public float maxSpeed = 20.0f;
+
+    public float currentSpeed = 0.0f;
     
     private bool leftKeyPressed;
     private bool rightKeyPressed;
@@ -40,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         rightKeyPressed = false;
 
         playerRigidbody = GetComponent<Rigidbody>();
-        
+        maxSpeed = time.slider.maxValue;
         left.action.Enable();
         right.action.Enable();
 
@@ -105,10 +103,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        acceleration = force / mass;
-        playerSpeed += acceleration * (1-time.timeBetweenKeys);
-        playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed , ForceMode.Acceleration);
-        Debug.Log(playerSpeed);
+        currentSpeed += acceleration* (1-time.timeBetweenKeys)  * Time.deltaTime;
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+
+        playerRigidbody.AddRelativeForce(new Vector3(0, 0, 10) * currentSpeed , ForceMode.Acceleration);
+
+        time.UpdateSpeedUI();
     }
 
     private void CheckInput(bool left, bool right)
@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
             leftKeyPressed = false;
             rightKeyPressed = false;
             time.timeBetweenKeys = 0;
-            playerSpeed = 0f;
+            currentSpeed = 0f;
         }
     }
 
