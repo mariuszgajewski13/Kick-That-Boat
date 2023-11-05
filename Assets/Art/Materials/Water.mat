@@ -127,7 +127,7 @@ Material:
     - _Foam_Amount: 0.42
     - _Foam_Cuttoff: 1.07
     - _Foam_Speed: 0.2
-    - _Frequency: 21.6
+    - _Frequency: 71
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -144,18 +144,18 @@ Material:
     - _Refractoin_Impact: 0.5
     - _Refreaction_Scale: 99.8
     - _Refreaction_Strength: 1.2
-    - _Ripple_strength: 1
+    - _Ripple_strength: 0.5
     - _Smoothness: 0.9
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Strength: 0.154
     - _Surface: 1
-    - _Wave_Amplitude: 0.0008
-    - _Wave_Distortion_Scale: 21.47
-    - _Wave_Length: 12.5
+    - _Wave_Amplitude: 0.2
+    - _Wave_Distortion_Scale: 26.1
+    - _Wave_Length: 11.3
     - _Wave_Scale: 100
-    - _Wave_Speed: 0.25
+    - _Wave_Speed: -2.33
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:

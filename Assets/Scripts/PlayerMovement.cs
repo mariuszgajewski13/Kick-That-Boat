@@ -1,35 +1,30 @@
-using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public SerialController serialController;
     
+    //Input
     public InputActionReference left;
     public InputActionReference right;
-    
-     private Rigidbody playerRigidbody;
-    
-    public float acceleration = 10.0f;
-    public float maxSpeed = 20.0f;
-
-    public float currentSpeed = 0.0f;
-    
     private bool leftKeyPressed;
     private bool rightKeyPressed;
-
+    
+    //Movement
+    public float acceleration = 10.0f;
+    public float maxSpeed = 20.0f;
+    public float currentSpeed = 0.0f;
+    private Rigidbody playerRigidbody;
+    
+    //Time
     public MovementTime time;
-
+    
+    //VFX
     public ParticleSystem ripples;
-
+    public Camera rippleCam;
     private float velocityXZ;
     private Vector3 playerPos;
-
-    public Camera rippleCam;
     
     private void Awake()
     {
@@ -60,8 +55,7 @@ public class PlayerMovement : MonoBehaviour
         rippleCam.transform.position = transform.position + Vector3.up * 10;
         Shader.SetGlobalVector("_Player", transform.position);
 
-        velocityXZ = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
-            new Vector3(playerPos.x, 0, playerPos.z));
+        velocityXZ = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(playerPos.x, 0, playerPos.z));
         playerPos = transform.position;
 
         if (velocityXZ > 0.02f && Time.renderedFrameCount % 5 == 0)
