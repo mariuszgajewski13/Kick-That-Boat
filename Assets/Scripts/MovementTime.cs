@@ -10,6 +10,11 @@ public class MovementTime : MonoBehaviour
     public float timeBetweenKeys = 0;
     public PlayerMovement player;
 
+    private void Start()
+    {
+        slider.maxValue = player.maxSpeed;
+    }
+
     private void Update()
     {
         timeBetweenKeys += Time.deltaTime;

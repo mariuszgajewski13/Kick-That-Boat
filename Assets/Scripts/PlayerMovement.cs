@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         rightKeyPressed = false;
 
         playerRigidbody = GetComponent<Rigidbody>();
-        maxSpeed = time.slider.maxValue;
         left.action.Enable();
         right.action.Enable();
 

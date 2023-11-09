@@ -2496,18 +2496,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7810459086152545175}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &588787663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588787659}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 454965c6473e8ca498674b02cba174e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &588787664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2939,16 +2927,6 @@ PrefabInstance:
       objectReference: {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
         type: 3}
-      propertyPath: ripples
-      value: 
-      objectReference: {fileID: 1708890323}
-    - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
-        type: 3}
-      propertyPath: rippleCam
-      value: 
-      objectReference: {fileID: 1328446407}
-    - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
-        type: 3}
       propertyPath: serialController
       value: 
       objectReference: {fileID: 253716979}
@@ -3051,21 +3029,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285297742472043725, guid: a56d2843ae3afaa489ea5d09c75738a3,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285297742472043725, guid: a56d2843ae3afaa489ea5d09c75738a3,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285297742472043725, guid: a56d2843ae3afaa489ea5d09c75738a3,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4115551990029769915, guid: a56d2843ae3afaa489ea5d09c75738a3, type: 3}
@@ -3603,6 +3566,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &956488224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7685930986508717369, guid: a56d2843ae3afaa489ea5d09c75738a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 703715320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &956488228
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956488224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2959467708922500008, guid: fb4f443fe09a6c54db422a2eb86f1b27, type: 3}
 --- !u!1 &1010097127
 GameObject:
   m_ObjectHideFlags: 0
@@ -4210,12 +4193,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294722693}
   m_CullTransparentMesh: 1
---- !u!20 &1328446407 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 87147082717874070, guid: a56d2843ae3afaa489ea5d09c75738a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 703715320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1336062244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 462779052115297083, guid: a56d2843ae3afaa489ea5d09c75738a3,
@@ -5356,12 +5333,6 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!198 &1708890323 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7978695748258043240, guid: a56d2843ae3afaa489ea5d09c75738a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 703715320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1736255898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6848,7 +6819,7 @@ PrefabInstance:
     - target: {fileID: 7777411258008959448, guid: 91dc9d756ed37a947883eb608ae3ed76,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 208.21893
+      value: 204.6
       objectReference: {fileID: 0}
     - target: {fileID: 7777411258008959448, guid: 91dc9d756ed37a947883eb608ae3ed76,
         type: 3}
