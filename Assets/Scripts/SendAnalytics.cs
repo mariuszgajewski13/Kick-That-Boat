@@ -2,23 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+using UnityEngine.SceneManagement;
+using System;
 
 public class SendAnalytics : MonoBehaviour
 {
     async void Start()
     {
         await UnityServices.InitializeAsync();
-		
-        AskForConsent();
     }
-	
-    void AskForConsent()
+    
+    public void ConscentNotGiven()
     {
-        // ... show the player a UI element that asks for consent.
-        ConsentGiven();
+        LoadNextScene();
     }
 	
-    void ConsentGiven()
+    public void ConsentGiven()
     {
         AnalyticsService.Instance.StartDataCollection();
         Dictionary<string, object> data = new Dictionary<string, object>(){
@@ -26,7 +25,14 @@ public class SendAnalytics : MonoBehaviour
         };
         
 
-        if(GameManager.instance.state == GameState.Victory)
+        //if(GameManager.instance.state == GameState.Victory)
+        if(!GameManager.instance.race)
             AnalyticsService.Instance.CustomData("winningTime", data);
+        
+        
+        
+        LoadNextScene();
     }
+    
+    public void LoadNextScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 }
