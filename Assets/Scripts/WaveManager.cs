@@ -6,10 +6,10 @@ public class WaveManager : MonoBehaviour
 {
    public static WaveManager instance;
 
-   public float amplitude;
-   public float length;
-   public float speed;
-   public float offset;
+   private float amplitude;
+   private float length;
+   private float speed;
+   private float offset;
 
    public Renderer rend;
 
