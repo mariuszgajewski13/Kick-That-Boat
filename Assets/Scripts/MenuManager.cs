@@ -10,6 +10,6 @@ public class MenuManager : MonoBehaviour
     public void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     public void StartRace() => GameManager.instance.UpdateGameState(GameState.Countdown);
-
+    
     public void QuitGame() => Application.Quit();
 }
