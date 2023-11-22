@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1.5
+  m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.35764506, g: 0.4086141, b: 0.5377358, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 2ec20deff1e121c4f8142776c2f524da, type: 2}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.09753903, g: 0.14084424, b: 0.20184174, a: 1}
+  m_IndirectSpecularColor: {r: 1.0951806, g: 0.7443146, b: 0.589662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1818,14 +1818,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367604290}
-  m_LocalRotation: {x: -0.010621613, y: 0.98876923, z: -0.12140553, w: -0.08650614}
+  m_LocalRotation: {x: -0.12140553, y: -0.08650614, z: 0.010621613, w: -0.98876923}
   m_LocalPosition: {x: -238.79134, y: 10.691329, z: -121.03572}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1903207960}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 14, y: 190, z: 0}
+  m_LocalEulerAnglesHint: {x: 14, y: 370, z: 0}
 --- !u!114 &367604292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1953,7 +1953,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1992,10 +1992,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0.5
+  m_BounceIntensity: 0.1
   m_ColorTemperature: 5900
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 7.545515e-22}
@@ -3939,7 +3939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &944620101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5245,7 +5245,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5412,7 +5412,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
