@@ -8,11 +8,13 @@ public class UIManager : MonoBehaviour
 {
     public Button[] buttons;
 
-    public InputActionReference player1Left;
-    public InputActionReference player1Right;
-    public InputActionReference player2Left;
-    public InputActionReference player2Right;
+    // public InputActionReference player1Left;
+    // public InputActionReference player1Right;
+    // public InputActionReference player2Left;
+    // public InputActionReference player2Right;
 
+    public Receiver player1;
+    
     private Button activeButton;
     
     private int tapCount = 0;
@@ -23,21 +25,21 @@ public class UIManager : MonoBehaviour
     
     private void Start()
     {
-        player1Left.action.Enable();
-        player1Right.action.Enable();
-        player2Left.action.Enable();
-        player2Right.action.Enable();
+        // player1Left.action.Enable();
+        // player1Right.action.Enable();
+        // player2Left.action.Enable();
+        // player2Right.action.Enable();
 
-        
         buttons[0].Select();
         activeButton = buttons[0];
     }
 
     private void Update()
     {
+        
         activeButtonIndex = Array.IndexOf(buttons, activeButton);
-        if (player1Left.action.triggered ||
-            player2Left.action.triggered)
+        if (player1.left) //||
+            //player2Left.action.triggered)
             {
                 if (activeButton == buttons[0])
                     activeButton = buttons[0];
@@ -48,8 +50,8 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-            if (player1Right.action.triggered ||
-                player2Right.action.triggered)
+            if (player1.right)//||
+                //player2Right.action.triggered)
             {
                 if (activeButton == buttons[buttons.Length - 1])
                     activeButton = buttons[buttons.Length - 1];
@@ -62,11 +64,11 @@ public class UIManager : MonoBehaviour
             }
 
             if (activeButton == buttons[0])
-                if (DoubleTap(player1Left.action.triggered, player2Left.action.triggered))
+                if (DoubleTap(player1.left, player1.left))
                     Select();
 
             if (activeButton == buttons[buttons.Length - 1])
-                if (DoubleTap(player1Right.action.triggered, player2Right.action.triggered))
+                if (DoubleTap(player1.right, player1.right))
                     Select();
             
     }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public SerialController serialController;
+    public Receiver receiver;
     
     //Input
     public InputActionReference left;
@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     
     private void Awake()
     {
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         leftKeyPressed = false;
         rightKeyPressed = false;
 
@@ -46,9 +45,10 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        if (GameManager.instance.race)
+        if (GameManager.instance.race || GameManager.instance.state == GameState.Tutorial)
         {
             CheckInput(left.action.triggered, right.action.triggered);
+            CheckInput(receiver.left, receiver.right);
         }
         
         rippleCam.transform.position = transform.position + Vector3.up * 10;
@@ -67,32 +67,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
     }
-
-    void OnMessageArrived(string msg)
-    {
-        if (GameManager.instance.race)
-        {
-            bool left = false;
-            bool right = false;
-            Debug.Log(msg);
-            if (msg == "1")
-            {
-               left = true;
-            }
-            
-            if (msg == "2")
-            {
-                right = true;
-            }
-
-            CheckInput(left, right);
-        }
-    }
     
-    void OnConnectionEvent(bool success)
-    {
-
-    }
 
     private void Move()
     {
