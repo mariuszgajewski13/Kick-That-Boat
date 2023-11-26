@@ -8,10 +8,10 @@ public class UIManager : MonoBehaviour
 {
     public Button[] buttons;
 
-    // public InputActionReference player1Left;
-    // public InputActionReference player1Right;
-    // public InputActionReference player2Left;
-    // public InputActionReference player2Right;
+    public InputActionReference player1Left;
+    public InputActionReference player1Right;
+    public InputActionReference player2Left;
+    public InputActionReference player2Right;
 
     public Receiver player1;
     
@@ -25,10 +25,10 @@ public class UIManager : MonoBehaviour
     
     private void Start()
     {
-        // player1Left.action.Enable();
-        // player1Right.action.Enable();
-        // player2Left.action.Enable();
-        // player2Right.action.Enable();
+        player1Left.action.Enable();
+        player1Right.action.Enable();
+        player2Left.action.Enable();
+        player2Right.action.Enable();
 
         buttons[0].Select();
         activeButton = buttons[0];
@@ -36,40 +36,39 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        
         activeButtonIndex = Array.IndexOf(buttons, activeButton);
-        if (player1.left) //||
-            //player2Left.action.triggered)
-            {
-                if (activeButton == buttons[0])
-                    activeButton = buttons[0];
-                else
-                {
-                    activeButton = buttons[activeButtonIndex - 1];
-                    activeButton.Select();
-                }
-            }
-
-            if (player1.right)//||
-                //player2Right.action.triggered)
-            {
-                if (activeButton == buttons[buttons.Length - 1])
-                    activeButton = buttons[buttons.Length - 1];
-                else
-                {
-                    activeButton = buttons[activeButtonIndex + 1];
-                    activeButton.Select();
-                }
-
-            }
-
+        if (player1.left ||
+            player1Left.action.triggered)
+        {
             if (activeButton == buttons[0])
-                if (DoubleTap(player1.left, player1.left))
-                    Select();
+                activeButton = buttons[0];
+            else
+            {
+                activeButton = buttons[activeButtonIndex - 1];
+                activeButton.Select();
+            }
+        }
 
+        if (player1.right ||
+            player1Right.action.triggered)
+        {
             if (activeButton == buttons[buttons.Length - 1])
-                if (DoubleTap(player1.right, player1.right))
-                    Select();
+                activeButton = buttons[buttons.Length - 1];
+            else
+            {
+                activeButton = buttons[activeButtonIndex + 1];
+                activeButton.Select();
+            }
+
+        }
+
+        if (activeButton == buttons[0])
+            if (DoubleTap(player1Left.action.triggered, player1Left.action.triggered))
+                Select();
+
+        if (activeButton == buttons[buttons.Length - 1])
+            if (DoubleTap(player1Right.action.triggered, player1Right.action.triggered))
+                Select();
             
     }
 

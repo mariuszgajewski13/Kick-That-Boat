@@ -7,29 +7,44 @@ using System;
 
 public class SendAnalytics : MonoBehaviour
 {
+    public bool conscent;
+    
     async void Start()
     {
         await UnityServices.InitializeAsync();
+        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+    }
+    
+    private void OnDestroy() => GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+
+    private void GameManagerOnOnGameStateChanged(GameState state)
+    {
+        if (state == GameState.Victory && conscent)
+        {
+            SendData();
+        }
     }
     
     public void ConscentNotGiven()
     {
         LoadNextScene();
     }
-	
+
     public void ConsentGiven()
+    {
+        conscent = true;
+        LoadNextScene();
+    }
+
+
+    public void SendData()
     {
         AnalyticsService.Instance.StartDataCollection();
         Dictionary<string, object> data = new Dictionary<string, object>(){
             { "winningTime" , TimeManager.instance.victoryTime},
         };
-        
 
-        //if(GameManager.instance.state == GameState.Victory)
-        if(!GameManager.instance.race)
-            AnalyticsService.Instance.CustomData("winningTime", data);
-        
-        
+        AnalyticsService.Instance.CustomData("winningTime", data);
         
         LoadNextScene();
     }
