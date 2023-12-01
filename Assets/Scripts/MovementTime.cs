@@ -9,6 +9,8 @@ public class MovementTime : MonoBehaviour
     public Slider slider;
     public float timeBetweenKeys = 0;
     public PlayerMovement player;
+    public List<float> timeBetweenPresses = new List<float>();
+    public List<float> avgSpeed = new List<float>();
 
     private void Start()
     {
@@ -18,6 +20,8 @@ public class MovementTime : MonoBehaviour
     private void Update()
     {
         timeBetweenKeys += Time.deltaTime;
+        timeBetweenPresses.Add(timeBetweenKeys);
+        avgSpeed.Add(player.currentSpeed);
 
         if (player.currentSpeed <= 0)
             slider.value --;

@@ -18,12 +18,12 @@ public class LevelFinish : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             whoWon.text = "Player 1 WON";
-            whoWon.color = new Color(186, 255, 178);
+            whoWon.fontMaterial.color = new Color(186, 255, 178);
         }
         else if (other.CompareTag("Player2"))
         {
             whoWon.text = "Player 2 WON";
-            whoWon.color = new Color(76, 109, 152);
+            whoWon.fontMaterial.color = new Color(76, 109, 152);
         }
     }
 }

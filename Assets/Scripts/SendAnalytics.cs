@@ -3,11 +3,11 @@ using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
 using UnityEngine.SceneManagement;
-using System;
 
 public class SendAnalytics : MonoBehaviour
 {
-    public bool conscent;
+    private bool _consent = true;
+    public MovementTime mvTime;
     
     async void Start()
     {
@@ -19,35 +19,43 @@ public class SendAnalytics : MonoBehaviour
 
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
-        if (state == GameState.Victory && conscent)
+        state = GameManager.instance.state;
+        
+        if (state == GameState.Victory && _consent)
         {
             SendData();
         }
     }
     
-    public void ConscentNotGiven()
+    public void ConsentNotGiven()
     {
         LoadNextScene();
     }
 
     public void ConsentGiven()
     {
-        conscent = true;
+        _consent = true;
         LoadNextScene();
     }
 
 
-    public void SendData()
+    private void SendData()
     {
         AnalyticsService.Instance.StartDataCollection();
-        Dictionary<string, object> data = new Dictionary<string, object>(){
+        
+        Dictionary<string, object> time = new Dictionary<string, object>(){
             { "winningTime" , TimeManager.instance.victoryTime},
         };
-
-        AnalyticsService.Instance.CustomData("winningTime", data);
         
-        LoadNextScene();
+        Dictionary<string, object> speed = new Dictionary<string, object>(){
+            { "avgSpeed" , mvTime.avgSpeed},
+            { "timeBetweenPresses" , mvTime.timeBetweenPresses},
+        };
+
+        AnalyticsService.Instance.CustomData("winningTime", time);
+        AnalyticsService.Instance.CustomData("AverageSpeed", speed);
+        Debug.Log("data send");
     }
     
-    public void LoadNextScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    private void LoadNextScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 }
