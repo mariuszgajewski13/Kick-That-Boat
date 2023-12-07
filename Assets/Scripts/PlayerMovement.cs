@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Serial
     public Receiver receiver;
     
     //Input
@@ -25,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     public Camera rippleCam;
     private float velocityXZ;
     private Vector3 playerPos;
+
+    public Animator motorAnimation;
+    private float animSpeed = 0;
     
     private void Awake()
     {
@@ -62,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
             int y = (int)transform.eulerAngles.y;
             CreateRipple(y-90, y+90, 3, 5, 2, 1);
         }
+
+        animSpeed = animSpeed.Map(currentSpeed, maxSpeed, 0, -1);
+        motorAnimation.speed = animSpeed;
+        Debug.Log(animSpeed);
     }
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
@@ -120,4 +128,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
- 
+public static class ExtensionMethods
+{
+    public static float Map (this float value, float fromSource, float toSource, float fromTarget, float toTarget)
+    {
+        return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
+    }
+}
