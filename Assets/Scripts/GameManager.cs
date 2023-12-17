@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.PlayerLoop;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +13,11 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnGameStateChanged;
 
     public bool race;
-    
+   
+    public float fadeTime = 0.5f;
+    public float opacity = 255f;
+    public GameObject fadeScreen;
+
     private void Awake()
     {
         instance = this;
@@ -49,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     void HandleTutorial()
     {
-        
+        StartCoroutine(load(fadeTime, opacity));
     }
 
     void HandleCountdown()
@@ -66,6 +72,20 @@ public class GameManager : MonoBehaviour
     void HandleRace()
     {
         race = true;
+    }
+
+    IEnumerator load(float fadeTime, float opacity){
+        yield return new WaitForSeconds(1);
+        while(opacity > 0){
+            Color color = fadeScreen.GetComponent<Image>().color;
+            // fadeScreen.GetComponent<Image>().color = new Color(0, 0, 0, opacity);
+            // opacity-=10;
+            opacity = color.a - (fadeTime * Time.deltaTime);
+            color = new Color(color.r, color.g, color.b, opacity);
+            fadeScreen.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        Destroy(fadeScreen);
     }
 }
 

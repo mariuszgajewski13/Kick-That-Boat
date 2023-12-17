@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     //Input
     public InputActionReference left;
     public InputActionReference right;
+
+    public InputActionReference debug;
     private bool leftKeyPressed;
     private bool rightKeyPressed;
     
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         left.action.Enable();
         right.action.Enable();
+        debug.action.Enable();
 
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
@@ -56,7 +59,8 @@ public class PlayerMovement : MonoBehaviour
         }
         
         rippleCam.transform.position = transform.position + Vector3.up * 10;
-        Shader.SetGlobalVector("_Player", transform.position);
+        Shader.SetGlobalVector("_Player1", transform.position);
+        //Shader.SetGlobalVector("_Player2", transform.position);
 
         velocityXZ = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(playerPos.x, 0, playerPos.z));
         playerPos = transform.position;
@@ -69,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
         animSpeed = animSpeed.Map(currentSpeed, maxSpeed, 0, -1);
         motorAnimation.speed = animSpeed;
-        Debug.Log(animSpeed);
     }
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
@@ -112,6 +115,10 @@ public class PlayerMovement : MonoBehaviour
             rightKeyPressed = false;
             time.timeBetweenKeys = 0;
             currentSpeed = 0f;
+        }
+
+        if(debug.action.triggered){
+            playerRigidbody.AddRelativeForce(new Vector3(0, 0, 25) * 10 , ForceMode.Acceleration);
         }
     }
 

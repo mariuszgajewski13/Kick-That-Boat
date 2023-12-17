@@ -14,12 +14,13 @@ public class UIManager : MonoBehaviour
     public InputActionReference player2Right;
 
     public Receiver player1;
+    //public Receiver player2;
     
     private Button activeButton;
     
     private int tapCount = 0;
     private float lastTapTime = 0f;
-    public float multiTapDelay = 0.3f;
+    public float multiTapDelay = 0.8f;
 
     private int activeButtonIndex;
     
@@ -69,6 +70,39 @@ public class UIManager : MonoBehaviour
         if (activeButton == buttons[buttons.Length - 1])
             if (DoubleTap(player1Right.action.triggered, player1Right.action.triggered))
                 Select();
+        //////////////////////////////////////
+        // if (player2.left ||
+        //     player2Left.action.triggered)
+        // {
+        //     if (activeButton == buttons[0])
+        //         activeButton = buttons[0];
+        //     else
+        //     {
+        //         activeButton = buttons[activeButtonIndex - 1];
+        //         activeButton.Select();
+        //     }
+        // }
+
+        // if (player2.right ||
+        //     playerRight.action.triggered)
+        // {
+        //     if (activeButton == buttons[buttons.Length - 1])
+        //         activeButton = buttons[buttons.Length - 1];
+        //     else
+        //     {
+        //         activeButton = buttons[activeButtonIndex + 1];
+        //         activeButton.Select();
+        //     }
+
+        // }
+
+        // if (activeButton == buttons[0])
+        //     if (DoubleTap(player2Left.action.triggered, player2Left.action.triggered))
+        //         Select();
+
+        // if (activeButton == buttons[buttons.Length - 1])
+        //     if (DoubleTap(player2Right.action.triggered, player2Right.action.triggered))
+        //         Select();
             
     }
 

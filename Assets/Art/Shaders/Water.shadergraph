@@ -10,6 +10,9 @@
             "m_Id": "ab682a6f69794419a115bad3820d2058"
         },
         {
+            "m_Id": "7f966f51da194789be24746aac033f21"
+        },
+        {
             "m_Id": "eb619e57253744a68ee42c8c72525e21"
         },
         {
@@ -3046,6 +3049,9 @@
             "m_Id": "2c8d00d896c845a497b110e461120872"
         },
         {
+            "m_Id": "7f966f51da194789be24746aac033f21"
+        },
+        {
             "m_Id": "9c4908f114ca4ec190b40bbad398d6f8"
         }
     ]
@@ -4663,12 +4669,12 @@
     "m_Guid": {
         "m_GuidSerialized": "2fab9e78-820d-4134-9c5a-0c5bca9378a7"
     },
-    "m_Name": "Player",
+    "m_Name": "Player1",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Player",
-    "m_DefaultReferenceName": "_Player",
+    "m_RefNameGeneratedByDisplayName": "Player1",
+    "m_DefaultReferenceName": "_Player1",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": false,
+    "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_Precision": 0,
@@ -6969,7 +6975,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "577b9c5c7ba848f89f044c9e1f797889",
     "m_Id": 0,
-    "m_DisplayName": "Player",
+    "m_DisplayName": "Player1",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -8808,6 +8814,33 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector3ShaderProperty",
+    "m_ObjectId": "7f966f51da194789be24746aac033f21",
+    "m_Guid": {
+        "m_GuidSerialized": "2fcc713c-38eb-455e-ab2a-881031599570"
+    },
+    "m_Name": "Player2",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Player2",
+    "m_DefaultReferenceName": "_Player2",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 
