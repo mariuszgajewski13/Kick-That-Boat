@@ -46,6 +46,8 @@ public class PlayerMovement1 : MonoBehaviour
         left.action.Enable();
         right.action.Enable();
 
+        receiver = PrefabData.Instance.GetComponent<Receiver2>();
+        
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
 

@@ -32,6 +32,9 @@ public class UIManager : MonoBehaviour
         player1Right.action.Enable();
         player2Left.action.Enable();
         player2Right.action.Enable();
+        
+        player1 = PrefabData.Instance.GetComponent<Receiver>();
+        player2 = PrefabData.Instance.GetComponent<Receiver2>();
 
     }
 
@@ -64,7 +67,7 @@ public class UIManager : MonoBehaviour
         }
 
         if (activeButton == buttons[0])
-            if (DoubleTap(player1Left.action.triggered, player1Left.action.triggered) || DoubleTap(player1.left, player1.left))
+            if (DoubleTap(player1Left.action.triggered, player1Left.action.triggered) || DoubleTap(player1.left, player1.left) || DoubleTap(player2Left.action.triggered, player2Left.action.triggered) || DoubleTap(player2Right.action.triggered, player2Right.action.triggered))
                 Select();
 
         if (activeButton == buttons[buttons.Length - 1])
