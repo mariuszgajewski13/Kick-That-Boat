@@ -21,7 +21,7 @@ public class PlayerMovement1 : MonoBehaviour
     private Rigidbody _playerRigidbody;
     
     //Time
-    public MovementTime time;
+    public MovementTime1 time;
     
     //VFX
     public ParticleSystem ripples;

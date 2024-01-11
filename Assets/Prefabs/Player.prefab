@@ -4902,12 +4902,11 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   maxSpeed: 50
-  acceleration: 25
+  acceleration: 50
   currentSpeed: 0
   time: {fileID: 6833847402864499574}
   ripples: {fileID: 513344231652592866}
   rippleCam: {fileID: 7534625075793583644}
-  splash: {fileID: 0}
   motorSplash: {fileID: 0}
   motorAnimation: {fileID: 0}
 --- !u!1 &7507643607808947589
@@ -5301,8 +5300,10 @@ MonoBehaviour:
   slider: {fileID: 0}
   timeBetweenKeys: 0
   player: {fileID: 0}
-  timeBetweenPresses: []
-  avgSpeed: []
+  LtimeBetweenPresses: []
+  LavgSpeed: []
+  timeBetweenPresses: 0
+  avgSpeed: 0
 --- !u!1001 &1138643289658436066
 PrefabInstance:
   m_ObjectHideFlags: 0
