@@ -8,8 +8,8 @@ public class SendAnalytics : MonoBehaviour
 {
     private bool _consent = true;
     public MovementTime mvTime;
-    
-    async void Start()
+
+    private async void Start()
     {
         await UnityServices.InitializeAsync();
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
@@ -17,10 +17,9 @@ public class SendAnalytics : MonoBehaviour
     
     private void OnDestroy() => GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
-        state = GameManager.instance.state;
-        
         if (state == GameState.Victory && _consent)
         {
             SendData();
@@ -44,7 +43,7 @@ public class SendAnalytics : MonoBehaviour
         AnalyticsService.Instance.StartDataCollection();
         
         Dictionary<string, object> time = new Dictionary<string, object>(){
-            { "winningTime" , TimeManager.instance.victoryTime},
+            { "winningTime" , TimeManager.instance.victoryTime}
         };
         
         Dictionary<string, object> speed = new Dictionary<string, object>(){
@@ -55,6 +54,9 @@ public class SendAnalytics : MonoBehaviour
         AnalyticsService.Instance.CustomData("winningTime", time);
         AnalyticsService.Instance.CustomData("AverageSpeed", speed);
         Debug.Log("data send");
+        Debug.Log(TimeManager.instance.victoryTime);
+        Debug.Log(mvTime.avgSpeed);
+        Debug.Log(mvTime.timeBetweenPresses);
     }
     
     private void LoadNextScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);

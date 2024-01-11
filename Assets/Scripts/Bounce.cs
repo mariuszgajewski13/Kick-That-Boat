@@ -23,7 +23,7 @@ public class Bounce : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForceAtPosition(Physics.gravity / floaterCount, transform.position, ForceMode.Acceleration);
+        //rb.AddForceAtPosition(Physics.gravity, transform.position, ForceMode.Acceleration);
         float waveHeight = WaveManager.instance.GetWaveHeight(transform.position.z);
         if (transform.position.y < waveHeight)
         {

@@ -22,15 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Debug",
-                    "type": "PassThrough",
-                    "id": "f14465c6-6439-4a10-9442-afbb83dc4d96",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -53,17 +44,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1517853a-fbcc-46d1-b16b-8845a6510e1c",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Debug",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

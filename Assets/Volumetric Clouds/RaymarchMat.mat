@@ -52,7 +52,7 @@ Material:
     - _numLightSteps: 16
     - _numSteps: 64
     - _stepSize: 0.19
-    - _transmittance: 0.37
+    - _transmittance: 0.44
     m_Colors:
     - _Color: {r: 0.9481132, g: 0.9852099, b: 1, a: 0}
     - _ShadowColor: {r: 1, g: 0.24056602, b: 0.36094877, a: 0}

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Receiver : MonoBehaviour
@@ -12,14 +10,16 @@ public class Receiver : MonoBehaviour
         left = false;
         right = false;
         Debug.Log(msg);
-        if (msg == "1")
+        switch (msg)
         {
-            left = true;
-        }
-            
-        if (msg == "2")
-        {
-            right = true;
+            case "1":
+                left = true;
+                left = false;
+                break;
+            case "2":
+                right = true;
+                right = false;
+                break;
         }
     }
     

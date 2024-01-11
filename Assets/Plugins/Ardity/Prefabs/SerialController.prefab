@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 405068}
   - component: {fileID: 11442534}
   - component: {fileID: 2921884478014885611}
+  - component: {fileID: 5950657639500017383}
   m_Layer: 0
   m_Name: SerialController
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc5f48af2cffd747a079fe8c632e2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: COM4
+  portName: COM10
   baudRate: 9600
   messageListener: {fileID: 128384}
   reconnectionDelay: 1000
@@ -60,6 +61,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cc7987128b06794980fe757bc243435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left: 0
+  right: 0
+--- !u!114 &5950657639500017383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98717feda7a090049bfc781a5abd2c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   left: 0

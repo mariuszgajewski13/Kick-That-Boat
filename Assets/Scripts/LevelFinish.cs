@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class LevelFinish : MonoBehaviour
 {
@@ -8,29 +8,37 @@ public class LevelFinish : MonoBehaviour
     public GameObject timeBox;
     public GameObject winningScreen;
     public GameObject UIManager;
+    public float delayTime = 1.5f;
+    public Button restart;
+    public Button menu;
+
+    private void Start()
+    {
+        restart.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        GameManager.instance.UpdateGameState(GameState.Victory);
-        StartCoroutine(Wait(20));
-        whoWon.gameObject.SetActive(true);
-        timeBox.SetActive(false);
-        winningScreen.gameObject.SetActive(true);
-        UIManager.SetActive(true);
         if (other.CompareTag("Player"))
         {
-            whoWon.text = "<color=#baffb2>Player 1 WON";
-            whoWon.fontMaterial.color = new Color(186, 255, 178);
+            whoWon.text = "<color=#59A973>Player 1 WON";
         }
         else if (other.CompareTag("Player2"))
         {
-            whoWon.text = "<color=#4c6d98>Player 2 WON";
-            whoWon.color = new Color(76, 109, 152);
+            whoWon.text = "<color=#2282C0>Player 2 WON";
         }
+        GameManager.instance.UpdateGameState(GameState.Victory);
+        whoWon.gameObject.SetActive(true);
+        timeBox.SetActive(false);
+        winningScreen.gameObject.SetActive(true);
+        Invoke(nameof(ShowUI), delayTime);
     }
 
-    IEnumerator Wait(float delay)
+    private void ShowUI()
     {
-        yield return new WaitForSeconds(delay);
+        UIManager.SetActive(true);
+        restart.gameObject.SetActive(true);
+        menu.gameObject.SetActive(true);
     }
 }
