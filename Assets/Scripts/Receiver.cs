@@ -14,11 +14,11 @@ public class Receiver : MonoBehaviour
         {
             case "1":
                 left = true;
-                left = false;
+                //left = false;
                 break;
             case "2":
                 right = true;
-                right = false;
+                //right = false;
                 break;
         }
     }

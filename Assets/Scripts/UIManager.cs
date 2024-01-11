@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
                 activeButton.Select();
             }
         }
-
+        
         if (player2.right ||
             player2Right.action.triggered)
         {
@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
                 activeButton = buttons[activeButtonIndex + 1];
                 activeButton.Select();
             }
-
+        
         }
 
         if (activeButton == buttons[0])

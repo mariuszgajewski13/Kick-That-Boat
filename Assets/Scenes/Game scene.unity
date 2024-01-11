@@ -374,7 +374,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!23 &105348933
 MeshRenderer:
@@ -387,7 +387,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1197,18 +1197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc7987128b06794980fe757bc243435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &253716982 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5950657639500017383, guid: a65acf0cbf56b80419f74ebf0bc845f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 253716978}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98717feda7a090049bfc781a5abd2c14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &277639958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1561,7 +1549,7 @@ MonoBehaviour:
   player2Right: {fileID: -9220785816332352658, guid: e4cb97f3a31918d4a89902cae3bcba52,
     type: 3}
   player1: {fileID: 253716981}
-  player2: {fileID: 253716982}
+  player2: {fileID: 1805811687}
   multiTapDelay: 0.3
 --- !u!1001 &289318768
 PrefabInstance:
@@ -4232,12 +4220,17 @@ PrefabInstance:
         type: 3}
       propertyPath: receiver2
       value: 
-      objectReference: {fileID: 253716982}
+      objectReference: {fileID: 0}
     - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
         type: 3}
       propertyPath: motorSplash
       value: 
       objectReference: {fileID: 190922261}
+    - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
+        type: 3}
+      propertyPath: acceleration
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
         type: 3}
       propertyPath: motorAnimation
@@ -4683,7 +4676,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!23 &707113269
 MeshRenderer:
@@ -4696,7 +4689,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6090,7 +6083,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player2
       value: 
-      objectReference: {fileID: 253716982}
+      objectReference: {fileID: 1805811687}
     - target: {fileID: 1451132151072631512, guid: 33fab783182f96b4aaa4a91ea56d4995,
         type: 3}
       propertyPath: buttons.Array.size
@@ -7712,7 +7705,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!23 &1637749205
 MeshRenderer:
@@ -7725,7 +7718,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7807,7 +7800,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!23 &1656492947
 MeshRenderer:
@@ -7820,7 +7813,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8594,6 +8587,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1800566153}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1805811687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5950657639500017383, guid: a65acf0cbf56b80419f74ebf0bc845f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 253716978}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98717feda7a090049bfc781a5abd2c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810722583
 GameObject:
   m_ObjectHideFlags: 0
@@ -9266,7 +9271,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!23 &1956779539
 MeshRenderer:
@@ -9279,7 +9284,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9658,7 +9663,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!23 &2036491669
 MeshRenderer:
@@ -9671,7 +9676,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10101,7 +10106,7 @@ PrefabInstance:
     - target: {fileID: 1644042890, guid: 6478e18702cee5d4f9a8f01f90c91c14, type: 3}
       propertyPath: receiver
       value: 
-      objectReference: {fileID: 253716982}
+      objectReference: {fileID: 1805811687}
     - target: {fileID: 1638074544807112090, guid: 6478e18702cee5d4f9a8f01f90c91c14,
         type: 3}
       propertyPath: receiver
@@ -10166,6 +10171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 2905203263358703165, guid: 6478e18702cee5d4f9a8f01f90c91c14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4119726820322994006, guid: 6478e18702cee5d4f9a8f01f90c91c14,
         type: 3}
