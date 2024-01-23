@@ -36,13 +36,15 @@ public class UIManager : MonoBehaviour
         player1 = PrefabData.Instance.GetComponent<Receiver>();
         player2 = PrefabData.Instance.GetComponent<Receiver2>();
 
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+
     }
 
     private void Update()
     {
         activeButtonIndex = Array.IndexOf(buttons, activeButton);
-        if (player1.left ||
-            player1Left.action.triggered)
+        if (player1.left || player1Left.action.triggered)
         {
             if (activeButton == buttons[0])
                 activeButton = buttons[0];
@@ -53,8 +55,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (player1.right ||
-            player1Right.action.triggered)
+        if (player1.right || player1Right.action.triggered)
         {
             if (activeButton == buttons[buttons.Length - 1])
                 activeButton = buttons[buttons.Length - 1];
@@ -63,19 +64,9 @@ public class UIManager : MonoBehaviour
                 activeButton = buttons[activeButtonIndex + 1];
                 activeButton.Select();
             }
-
         }
-
-        if (activeButton == buttons[0])
-            if (DoubleTap(player1Left.action.triggered, player1Left.action.triggered) || DoubleTap(player1.left, player1.left) || DoubleTap(player2Left.action.triggered, player2Left.action.triggered) || DoubleTap(player2Right.action.triggered, player2Right.action.triggered))
-                Select();
-
-        if (activeButton == buttons[buttons.Length - 1])
-            if (DoubleTap(player1Right.action.triggered, player1Right.action.triggered)|| DoubleTap(player1.right, player1.right))
-                Select();
         //////////////////////////////////////
-        if (player2.left ||
-            player2Left.action.triggered)
+        if (player2.left || player2Left.action.triggered)
         {
             if (activeButton == buttons[0])
                 activeButton = buttons[0];
@@ -86,8 +77,7 @@ public class UIManager : MonoBehaviour
             }
         }
         
-        if (player2.right ||
-            player2Right.action.triggered)
+        if (player2.right || player2Right.action.triggered)
         {
             if (activeButton == buttons[buttons.Length - 1])
                 activeButton = buttons[buttons.Length - 1];
@@ -96,17 +86,15 @@ public class UIManager : MonoBehaviour
                 activeButton = buttons[activeButtonIndex + 1];
                 activeButton.Select();
             }
-        
         }
-
+        /////////////////////////////////////
         if (activeButton == buttons[0])
-            if (DoubleTap(player2Left.action.triggered, player2Left.action.triggered))
+            if (DoubleTap(player1Left.action.triggered, player2Left.action.triggered) || DoubleTap(player1.left, player2.left))
                 Select();
 
         if (activeButton == buttons[buttons.Length - 1])
-            if (DoubleTap(player2Right.action.triggered, player2Right.action.triggered))
+            if (DoubleTap(player1Right.action.triggered, player2Right.action.triggered)|| DoubleTap(player1.right, player2.right))
                 Select();
-            
     }
 
     void Select() => activeButton.onClick.Invoke();
@@ -120,6 +108,8 @@ public class UIManager : MonoBehaviour
             if (timeSinceLastTap <= multiTapDelay)
             {
                 tapCount++;
+                p1 = false;
+                p2 = false;
             }
             else
             {

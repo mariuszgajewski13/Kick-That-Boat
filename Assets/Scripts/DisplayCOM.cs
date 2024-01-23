@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -29,6 +30,6 @@ public class DisplayCOM : MonoBehaviour
 
     private void Display()
     {
-        _text.text = "Platform connectedd to port: \n" + _serialController.portName;
+        _text.text = $"Platform connected to port: \n{_serialController.portName}";
     }
 }

@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator motorAnimation;
     private float _animSpeed;
+
+    public float damping = 0.2f;
     
     private static readonly int Player = Shader.PropertyToID("_Player1");
 
@@ -103,13 +105,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        currentSpeed += acceleration* (1-time.timeBetweenKeys)  * Time.deltaTime;
+        // currentSpeed += acceleration* (1-time.timeBetweenKeys)  * Time.deltaTime;
+        // currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+        //
+        // _playerRigidbody.AddRelativeForce(new Vector3(0, 0, 10) * currentSpeed , ForceMode.Acceleration);
+        // //playerRigidbody.AddRelativeForce(new Vector3(0, 0, 20) * currentSpeed , ForceMode.Acceleration);
+        // //_playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * currentSpeed , ForceMode.VelocityChange);
+        //
+        // time.UpdateSpeedUI();
+        
+        
+        // Adjust acceleration based on time between key presses
+        float adjustedAcceleration = acceleration * (1 - time.timeBetweenKeys*2);
+
+        // Update current speed with acceleration and apply damping
+        currentSpeed += adjustedAcceleration * Time.deltaTime;
+        currentSpeed *= (1 - damping * Time.deltaTime);
+
+        // Clamp the current speed
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
 
-        _playerRigidbody.AddRelativeForce(new Vector3(0, 0, 10) * currentSpeed , ForceMode.Acceleration);
-        //playerRigidbody.AddRelativeForce(new Vector3(0, 0, 20) * currentSpeed , ForceMode.Acceleration);
-        //_playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * currentSpeed , ForceMode.VelocityChange);
+        // Calculate the force to be applied
+        Vector3 force = new Vector3(0, 0, 1) * currentSpeed;
 
+        // Apply the force using ForceMode.VelocityChange for smoother movement
+        _playerRigidbody.AddRelativeForce(force, ForceMode.Impulse);
+
+        // Update the UI or perform any other necessary actions
         time.UpdateSpeedUI();
     }
 

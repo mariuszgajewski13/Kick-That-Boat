@@ -2883,6 +2883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mvTime: {fileID: 1690211805}
+  filePath: Assets/data.csv
 --- !u!1 &496654395
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,6 +4148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
         type: 3}
+      propertyPath: maxSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
+        type: 3}
       propertyPath: receiver
       value: 
       objectReference: {fileID: 0}
@@ -4160,6 +4166,11 @@ PrefabInstance:
       propertyPath: motorSplash
       value: 
       objectReference: {fileID: 190922261}
+    - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
+        type: 3}
+      propertyPath: acceleration
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1793800383589632048, guid: a56d2843ae3afaa489ea5d09c75738a3,
         type: 3}
       propertyPath: motorAnimation
@@ -10043,6 +10054,11 @@ PrefabInstance:
       propertyPath: acceleration
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1110942288761840188, guid: 6478e18702cee5d4f9a8f01f90c91c14,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 79a9b6ecab59f6c46a4ce5faf4e46c4d, type: 2}
     - target: {fileID: 1638074544807112090, guid: 6478e18702cee5d4f9a8f01f90c91c14,
         type: 3}
       propertyPath: receiver
