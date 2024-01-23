@@ -27,7 +27,7 @@ public class SendAnalytics : MonoBehaviour
         if (state == GameState.Victory && _consent)
         {
             SendData();
-            WriteToCSV(TimeManager.instance.victoryTime.ToString());
+            WriteToCSV(Math.Round(TimeManager.instance.victoryTime, 2).ToString("F2"));
         }
     }
     

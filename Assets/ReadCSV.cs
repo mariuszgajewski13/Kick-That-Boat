@@ -23,11 +23,21 @@ public class ReadCSV : MonoBehaviour
             if (File.Exists(filePath))
             {
                 string[] allLines = File.ReadAllLines(filePath);
-                List<string> sortedLines = allLines.OrderByDescending(line => line).ToList();
-                int linesToShow = Math.Min(10, sortedLines.Count);
+                List<float> sortedFloats = allLines.Select(line =>
+                {
+                    if (float.TryParse(line, out float floatValue))
+                    {
+                        return floatValue;
+                    }
+                    else
+                    {
+                        return 0f;
+                    }
+                }).OrderBy(value => value).ToList();
+                int linesToShow = Math.Min(10, sortedFloats.Count);
                 for (int i = 1; i < linesToShow; i++)
                 {
-                    text.text += $"{i}. {sortedLines[i]}\n";
+                    text.text += $"{i}. {sortedFloats[i]}\n";
                 }
             }
             else
