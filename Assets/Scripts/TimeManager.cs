@@ -10,7 +10,10 @@ public class TimeManager : MonoBehaviour
     public TMPro.TextMeshProUGUI finalTimeText;
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(this);
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
     

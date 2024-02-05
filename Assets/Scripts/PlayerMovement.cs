@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     
     //Time
     public MovementTime time;
+    public float timeToReset = 1f;
     
     //VFX
     public ParticleSystem ripples;
@@ -129,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 force = new Vector3(0, 0, 1) * currentSpeed;
 
         // Apply the force using ForceMode.VelocityChange for smoother movement
-        _playerRigidbody.AddRelativeForce(force, ForceMode.Impulse);
+        _playerRigidbody.AddRelativeForce(force, ForceMode.Impulse);    
 
         // Update the UI or perform any other necessary actions
         time.UpdateSpeedUI();
@@ -154,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
             time.timeBetweenKeys = 0;
         }
 
-        if (time.timeBetweenKeys > 1)
+        if (time.timeBetweenKeys > timeToReset)
         {
             _leftKeyPressed = false;
             _rightKeyPressed = false;

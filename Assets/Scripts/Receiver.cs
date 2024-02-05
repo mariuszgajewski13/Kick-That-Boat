@@ -9,16 +9,13 @@ public class Receiver : MonoBehaviour
     {
         left = false;
         right = false;
-        Debug.Log(msg);
         switch (msg)
         {
             case "1":
                 left = true;
-                //left = false;
                 break;
             case "2":
                 right = true;
-                //right = false;
                 break;
         }
     }

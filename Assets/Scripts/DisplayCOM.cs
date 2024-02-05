@@ -21,7 +21,7 @@ public class DisplayCOM : MonoBehaviour
     public void Change()
     {
         int port = dropdown.value;
-        _serialController.portName = dropdown.options[dropdown.value].text;
+        _serialController.portName = dropdown.options[port].text;
         //PrefabUtility.ApplyPrefabInstance(com, InteractionMode.UserAction);
         PrefabData.Instance.yourValueChanged = _serialController.portName;
         _serialController.portName = PrefabData.Instance.yourValueChanged;
