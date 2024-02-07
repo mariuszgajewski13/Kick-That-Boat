@@ -3,15 +3,12 @@ using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
 using UnityEngine.SceneManagement;
-using System.IO;
-using System;
+
 
 public class SendAnalytics : MonoBehaviour
 {
     private bool _consent = true;
     public MovementTime mvTime;
-    
-    [SerializeField] private string filePath = "Assets/data.csv"; 
 
     private async void Start()
     {
@@ -27,7 +24,7 @@ public class SendAnalytics : MonoBehaviour
         if (state == GameState.Victory && _consent)
         {
             SendData();
-            WriteToCSV(Math.Round(TimeManager.instance.victoryTime, 2).ToString("F2"));
+            
         }
     }
     
@@ -62,31 +59,6 @@ public class SendAnalytics : MonoBehaviour
         Debug.Log(TimeManager.instance.victoryTime);
         Debug.Log(mvTime.avgSpeed);
         Debug.Log(mvTime.timeBetweenPresses);
-    }
-    
-    private void WriteToCSV(string data)
-    {
-        try
-        {
-            if (!File.Exists(filePath))
-            {
-                using (StreamWriter sw = File.CreateText(filePath))
-                {
-                    sw.WriteLine("Time");
-                }
-            }
-            
-            using (StreamWriter sw = File.AppendText(filePath))
-            {
-                sw.WriteLine(data);
-            }
-
-            Debug.Log("Data written to CSV file!");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("Error writing to CSV file: " + e.Message);
-        }
     }
     
     private void LoadNextScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
