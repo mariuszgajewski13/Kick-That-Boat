@@ -38,17 +38,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6e147c8c-f0f5-4c43-b036-50f0d9b5420b",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "88121a87-3e78-493c-b1dc-afc14e899095",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",

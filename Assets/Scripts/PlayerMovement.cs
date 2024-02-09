@@ -1,48 +1,56 @@
-using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float timeBetweenKeys;
-    public SerialController serialController;
+    //Serial
+    public Receiver receiver;
     
-    [SerializeField] private float mass;
-    [SerializeField] private float force;
-    
+    //Input
     public InputActionReference left;
     public InputActionReference right;
     
-     private Rigidbody playerRigidbody;
+    private bool _leftKeyPressed;
+    private bool _rightKeyPressed;
     
-    private float playerSpeed;
-    private float acceleration;
+    //Movement
+    //[SerializeField]
+    public float maxSpeed = 20.0f;
+    public float acceleration = 10.0f;
+    public float currentSpeed;
+    private Rigidbody _playerRigidbody;
     
-    private bool leftKeyPressed;
-    private bool rightKeyPressed;
-
+    //Time
     public MovementTime time;
-
-    public ParticleSystem ripples;
-
-    private float velocityXZ;
-    private Vector3 playerPos;
-
-    public Camera rippleCam;
+    public float timeToReset = 1f;
     
+    //VFX
+    public ParticleSystem ripples;
+    public Camera rippleCam;
+    private float _velocityXZ;
+    private Vector3 _playerPos;
+    public ParticleSystem motorSplash;
+
+    public Animator motorAnimation;
+    private float _animSpeed;
+
+    
+    private static readonly int Player = Shader.PropertyToID("_Player1");
+    
+    public float damping = 0.5f;
+    private float slideDuration = 0.5f;
+
     private void Awake()
     {
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
-        leftKeyPressed = false;
-        rightKeyPressed = false;
-
-        playerRigidbody = GetComponent<Rigidbody>();
+        _leftKeyPressed = false;
+        _rightKeyPressed = false;
+        
+        _playerRigidbody = GetComponent<Rigidbody>();
         
         left.action.Enable();
         right.action.Enable();
+
+        receiver = PrefabData.Instance.GetComponent<Receiver>();
 
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
@@ -54,87 +62,91 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        if (GameManager.instance.race)
+        if (GameManager.instance.race || GameManager.instance.state == GameState.Tutorial)
         {
             CheckInput(left.action.triggered, right.action.triggered);
+            CheckInput(receiver.left, receiver.right);
         }
         
-        rippleCam.transform.position = transform.position + Vector3.up * 10;
-        Shader.SetGlobalVector("_Player", transform.position);
+        _playerPos = gameObject.transform.position;
+        rippleCam.transform.position = _playerPos + Vector3.up * 10;
+        
+        Shader.SetGlobalVector(Player, _playerPos);
+            
+            
+        _velocityXZ = Vector3.Distance(new Vector3(_playerPos.x, 0, _playerPos.z), new Vector3(_playerPos.x, 0, _playerPos.z));
 
-        velocityXZ = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
-            new Vector3(playerPos.x, 0, playerPos.z));
-        playerPos = transform.position;
-
-        if (velocityXZ > 0.02f && Time.renderedFrameCount % 5 == 0)
+        //if (velocityXZ > 0.02f && Time.renderedFrameCount % 5 == 0)
+        if (currentSpeed > 0)
         {
             int y = (int)transform.eulerAngles.y;
+            motorSplash.Play();
             CreateRipple(y-90, y+90, 3, 5, 2, 1);
         }
+
+        if (currentSpeed <= 0)
+        {
+            motorSplash.Stop();
+        }
+
+        float mappedAnimationSpeed = MapSpeedToAnimationSpeed(currentSpeed);
+        motorAnimation.speed = mappedAnimationSpeed;
     }
+    
+    float MapSpeedToAnimationSpeed(float speed)
+    {
+        speed = Mathf.Clamp(speed, 0f, maxSpeed);
+        float mappedSpeed = Mathf.Lerp(0f, 1f, speed / maxSpeed);
+        return mappedSpeed;
+    }
+    
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
 
     }
-
-    void OnMessageArrived(string msg)
-    {
-        if (GameManager.instance.race)
-        {
-            bool left = false;
-            bool right = false;
-            Debug.Log(msg);
-            if (msg == "1")
-            {
-               left = true;
-            }
-            
-            if (msg == "2")
-            {
-                right = true;
-            }
-
-            CheckInput(left, right);
-        }
-    }
     
-    void OnConnectionEvent(bool success)
-    {
-
-    }
 
     private void Move()
     {
-        acceleration = force / mass;
-        playerSpeed += acceleration * (1-time.timeBetweenKeys);
-        playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * playerSpeed , ForceMode.Acceleration);
+        float adjustedAcceleration = acceleration * 1 * (1 - time.timeBetweenKeys);
+
+        currentSpeed += adjustedAcceleration * Time.deltaTime;
+        currentSpeed *= (1 - damping * Time.deltaTime);
+
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+
+        Vector3 force = new Vector3(0, 0, 10) * currentSpeed;
+
+        _playerRigidbody.AddRelativeForce(force, ForceMode.Impulse);
+
+        time.UpdateSpeedUI();
     }
 
     private void CheckInput(bool left, bool right)
     {
         if (left) 
         {
-            leftKeyPressed = true;
-            if(rightKeyPressed)
+            _leftKeyPressed = true;
+            if(_rightKeyPressed)
                 Move();
-            rightKeyPressed = false;
+            _rightKeyPressed = false;
             time.timeBetweenKeys = 0;
         }
 
-        if (right && leftKeyPressed)
+        if (right && _leftKeyPressed)
         {
             Move();
-            rightKeyPressed = true;
-            leftKeyPressed= false;
+            _rightKeyPressed = true;
+            _leftKeyPressed= false;
             time.timeBetweenKeys = 0;
         }
 
-        if (time.timeBetweenKeys > 1)
+        if (time.timeBetweenKeys > timeToReset)
         {
-            leftKeyPressed = false;
-            rightKeyPressed = false;
+            _leftKeyPressed = false;
+            _rightKeyPressed = false;
             time.timeBetweenKeys = 0;
-            playerSpeed = 0f;
+            currentSpeed = 0f;
         }
     }
 
@@ -146,9 +158,8 @@ public class PlayerMovement : MonoBehaviour
         
         for (int i = start; i < end; i+=delta)
         {
-            ripples.Emit(transform.position+ripples.transform.forward * 0.5f, ripples.transform.forward * speed, size, lifetime, Color.white);
+            ripples.Emit(_playerPos+ripples.transform.forward * 0.5f, ripples.transform.forward * speed, size, lifetime, Color.white);
             ripples.transform.eulerAngles += Vector3.up * delta;
         }
     }
 }
- 

@@ -23,15 +23,18 @@ Material:
   m_Name: Water
   m_Shader: {fileID: -6465566751694194690, guid: f9108e950e161e4428df0851580f8fac,
     type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -64,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainNormal:
-        m_Texture: {fileID: 2800000, guid: c8344b43a8f67be43868a24339e03800, type: 3}
+        m_Texture: {fileID: 2800000, guid: a80f1af0a270d8f4da792b2bccc07dbe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -87,8 +90,16 @@ Material:
         m_Texture: {fileID: 8400000, guid: 475fe8b74e291dc4682e853cd49176bd, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Ripple_1:
+        m_Texture: {fileID: 8400000, guid: 79a9b6ecab59f6c46a4ce5faf4e46c4d, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_dce34e167ab8476b9b4863f9e79c633e_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 453113e9f2d053149ba23899f5728fd6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SecondaryNormal:
-        m_Texture: {fileID: 2800000, guid: 846e33231d06458429f06a873c519573, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3530da03813e04c40b4819a8274f2bbd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -112,60 +123,64 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _CastShadows: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Depth: 5.75
+    - _Depth: 1
     - _Depth_Intersection_Scale: 0.08
-    - _Depth_Strength: 0.1
+    - _Depth_Strength: 2.99
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Displacement: 0.0007
     - _DstBlend: 10
     - _EnvironmentReflections: 1
-    - _Foam_Amount: 0.42
-    - _Foam_Cuttoff: 1.07
-    - _Foam_Speed: 0.2
-    - _Frequency: 20
+    - _Foam_Amount: 0.36
+    - _Foam_Cuttoff: 1.26
+    - _Foam_Speed: 0.01
+    - _Frequency: 19.6
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _Normal_Strength: 2.5
+    - _Normal_Strength: 1.5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Refracion_Speed: 0.01
+    - _Refracion_Speed: 0.001
     - _Refraction_Scale: 42.06
     - _Refraction_Strength: 147.2
     - _Refractoin_Impact: 0.5
     - _Refreaction_Scale: 99.8
-    - _Refreaction_Strength: 1.2
-    - _Ripple_strength: 1
-    - _Smoothness: 0.8
+    - _Refreaction_Strength: 3.24
+    - _Ripple_strength: 0.5
+    - _Smoothness: 0.85
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Strength: 0.154
     - _Surface: 1
-    - _Wave_Amplitude: 0.0008
-    - _Wave_Distortion_Scale: 10
+    - _Wave_Amplitude: 0.2
+    - _Wave_Distortion_Scale: 25
+    - _Wave_Length: 5
     - _Wave_Scale: 100
-    - _Wave_Speed: 2
+    - _Wave_Speed: -1
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0, g: 0.4859475, b: 0.9811321, a: 0.81960785}
     - _Color: {r: 0, g: 0.4859475, b: 0.9811321, a: 0.81960785}
-    - _DeepWaterColor: {r: 0.2891153, g: 0.5265891, b: 0.8396226, a: 0.5686275}
+    - _DeepWaterColor: {r: 0.503827, g: 0.60559595, b: 0.6981132, a: 0.6509804}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
-    - _Foam_Scale: {r: 5, g: 5, b: 0, a: 0}
-    - _Player: {r: 0, g: 0, b: 0, a: 0}
-    - _Refraction_Scale: {r: 2, g: 2, b: 0, a: 0}
-    - _ShallowWaterColor: {r: 0.4575472, g: 0.80184007, b: 1, a: 0.4117647}
+    - _Foam_Scale: {r: 1, g: 1, b: 0, a: 0}
+    - _Player: {r: 0, g: 0.5, b: -10, a: 0}
+    - _Refraction_Scale: {r: 1, g: 1, b: 0, a: 0}
+    - _ShallowWaterColor: {r: 0.098039225, g: 0.43529415, b: 0.6313726, a: 0.6666667}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

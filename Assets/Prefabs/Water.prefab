@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7777411258008959448}
   - component: {fileID: 6647649227552880253}
   - component: {fileID: 8909745731777102519}
+  - component: {fileID: 3929085809156961618}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6964037242923721570}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 242.5, y: 3.8, z: 160.4}
-  m_LocalScale: {x: 1117.7982, y: 1267.7054, z: 489.3215}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3929085809156961618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6964037242923721570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951ff8aeb3ca57a4cbe21119f049d636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 8909745731777102519}

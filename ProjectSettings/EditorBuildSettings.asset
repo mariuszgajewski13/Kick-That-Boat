@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Conscent.unity
+    guid: f05f247d79fbf75fdbd3804a45558de9
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 44ee2fe265b2f7b4b844aeca6fde56f2

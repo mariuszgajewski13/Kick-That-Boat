@@ -9,13 +9,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcess
   - Water
   - UI
   - P1 Cam
   - P2 Cam
-  - 
-  - 
+  - P1 Ripples
+  - P2 Ripples
   - 
   - 
   - 

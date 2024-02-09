@@ -5,12 +5,15 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
     public float time;
-    private float victoryTime;
+    public float victoryTime;
     public TMPro.TextMeshProUGUI timer;
     public TMPro.TextMeshProUGUI finalTimeText;
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(this);
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
     

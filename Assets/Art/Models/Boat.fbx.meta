@@ -7,18 +7,68 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Body
-    second: {fileID: 2100000, guid: 7c1e7bee0a2df3c47a606bc97e5a8185, type: 2}
+      name: BoatBarierMetal
+    second: {fileID: 2100000, guid: 0d7436a971398af46989e6b8a53ff7ce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Edge
-    second: {fileID: 2100000, guid: 82be99ae037acbe4d979957cbfea1ae2, type: 2}
+      name: BoatBody
+    second: {fileID: 2100000, guid: 5d6716c6e17c79642b3b73a9f3385cd1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Mirror
-    second: {fileID: 2100000, guid: e9433649a5fd20c4bb6792dd00248a1e, type: 2}
+      name: BoatMotorMetal
+    second: {fileID: 2100000, guid: c60a35bee8fdc6f4b8ee9dc66275bb27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Buttons
+    second: {fileID: 2100000, guid: bb04d8656a9d9fd4baa9223cd336aa66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CHair
+    second: {fileID: 2100000, guid: 0a1006f8776c23f4cad574b2a74b0917, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CockpitHandleGold
+    second: {fileID: 2100000, guid: ebc6c38f09c79d84ab58c4bf3b935d87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flag
+    second: {fileID: 2100000, guid: 2c9b32dfdfae4a644b39337be84edb70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FlagPole
+    second: {fileID: 2100000, guid: 80c528a67966b4149bd8fccf716f625f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MotorBlack
+    second: {fileID: 2100000, guid: b5aee5f3dbc70ce438ae4330f3a1b4b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MotorGold
+    second: {fileID: 2100000, guid: 15d31b68c2dda814298db180a1948232, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MotorRed
+    second: {fileID: 2100000, guid: 6d4779e6f02381843a5ba3948671b1c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope
+    second: {fileID: 2100000, guid: d149236e84b77ed409879f36549c7f55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 7570651acfdc4e64c88cb44942b1b1b2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +102,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -91,7 +141,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -106,11 +156,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
