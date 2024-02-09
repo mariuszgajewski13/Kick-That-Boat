@@ -52,21 +52,15 @@ public class LevelFinish : MonoBehaviour
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
         if (File.Exists(filePath))
         {
-            using (StreamWriter sw = File.CreateText(filePath))
+            using (StreamWriter sw = File.AppendText(filePath))
             {
-                sw.WriteLine("Time");
+                sw.WriteLine(data);
             }
         }
         else
         {
             CreateFile(filePath);
         }
-        
-        using (StreamWriter sw = File.AppendText(filePath))
-        {
-            sw.WriteLine(data);
-        }
-
     }
     
     private void CreateFile(string filePath)

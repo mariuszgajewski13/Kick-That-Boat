@@ -35,6 +35,9 @@ public class PlayerMovement1 : MonoBehaviour
     private float _animSpeed;
     
     private static readonly int Player = Shader.PropertyToID("_Player2");
+    
+    public float damping = 0.5f;
+    private float slideDuration = 0.5f;
 
     private void Awake()
     {
@@ -106,12 +109,16 @@ public class PlayerMovement1 : MonoBehaviour
 
     private void Move()
     {
-        currentSpeed += acceleration* (1-time.timeBetweenKeys)  * Time.deltaTime;
+        float adjustedAcceleration = acceleration  * 1 * (1 - time.timeBetweenKeys);
+
+        currentSpeed += adjustedAcceleration * Time.deltaTime;
+        currentSpeed *= (1 - damping * Time.deltaTime);
+
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
 
-        _playerRigidbody.AddRelativeForce(new Vector3(0, 0, 10) * currentSpeed , ForceMode.Acceleration);
-        //playerRigidbody.AddRelativeForce(new Vector3(0, 0, 20) * currentSpeed , ForceMode.Acceleration);
-        //_playerRigidbody.AddRelativeForce(new Vector3(0, 0, 1) * currentSpeed , ForceMode.VelocityChange);
+        Vector3 force = new Vector3(0, 0, 10) * currentSpeed;
+
+        _playerRigidbody.AddRelativeForce(force, ForceMode.Impulse);
 
         time.UpdateSpeedUI();
     }

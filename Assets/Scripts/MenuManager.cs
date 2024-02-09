@@ -4,10 +4,10 @@ public class MenuManager : MonoBehaviour
 {
     public void LoadMainScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Game scene");
     }
 
-    public void LoadMenu() => SceneManager.LoadScene(1);
+    public void LoadMenu() => SceneManager.LoadScene("Main Menu");
     
     public void RestartLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
