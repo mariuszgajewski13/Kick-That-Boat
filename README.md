@@ -1,4 +1,5 @@
-//logo
+<img src="Assets/Art/Textures/UI/logo.png" alt="logo" width="200" align="center"/>
+
 # Kick That Boat
 
 Game made as an Engeneering project. It combines video games with physical electronics to awaken physical activity in players.
