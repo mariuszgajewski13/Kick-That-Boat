@@ -6,6 +6,27 @@ Game made as an Engeneering project. It combines video games with physical elect
 
 Game was made using Unity Game Engine, Blender and Arduino IDE.
 
+Game is design for two players. Core of the game is quite simple. The faster you step on the platform, the faster your boat moves. First player who reaches the finish line wins.
+
+## Images
+<figure>
+  <figcaption>Wiev from the game</figcaption>
+  <img src="img/Zrzut ekranu 2024-03-17 203258.png" alt="view" width="400"/>
+</figure>
+
+<figure>
+  <figcaption>Movement platform.</figcaption>
+  <img src="img/final.jpg" alt="final" width="400"/>
+  <img src="img/wholePlatform.jpg" alt="platform" width="400"/>
+</figure>
+
+<figure>
+  <figcaption>PCB design</figcaption>
+  <img src="img/20230920_130803.jpg" alt="logo" width="400"/>
+  <img src="img/pcbTOP.jpg" alt="logo" width="400"/>
+</figure>
+
+
 ## Code for Arduino 
 --- 
 ```c++
